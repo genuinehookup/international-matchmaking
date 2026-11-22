@@ -68,6 +68,7 @@ header {
     font-size: 0.95rem;
     transition: color 0.3s;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .header-right .link:hover { color: var(--primary-blue); }
@@ -402,7 +403,7 @@ main {
 
 .btn-secondary:hover { background: var(--text-white); color: var(--bg-dark); }
 
-/* --- MODALS (Terms & Connect) --- */
+/* --- MODALS (Terms & Connect & How It Works) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -455,6 +456,58 @@ main {
     grid-column: span 2;
 }
 
+/* How It Works specific styles */
+.how-it-works-content {
+    border-top: 5px solid var(--primary-blue);
+    max-width: 700px;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--bg-dark);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.step-number {
+    background: var(--primary-blue);
+    color: var(--text-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+.step-text h3 {
+    color: var(--text-white);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.step-text p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- CUSTOM SCROLLBAR & ANIMATIONS --- */
 .modal-content::-webkit-scrollbar { width: 8px; }
 .modal-content::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 10px; }
 .modal-content::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
@@ -609,4 +662,5 @@ main {
     .modal-body { padding: 15px; }
     .form-grid { grid-template-columns: 1fr; }
     .full-width { grid-column: span 1; }
+    .step-item { flex-direction: column; text-align: center; align-items: center; }
 }
