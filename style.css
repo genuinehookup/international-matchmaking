@@ -180,7 +180,6 @@ main {
     box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
 }
 
-/* Fades the edges so text appears out of thin air */
 .live-ticker-container::before,
 .live-ticker-container::after {
     content: '';
@@ -201,9 +200,7 @@ main {
     animation: scrollTicker 30s linear infinite;
 }
 
-.ticker-track:hover {
-    animation-play-state: paused; /* Pauses when mouse hovers over it */
-}
+.ticker-track:hover { animation-play-state: paused; }
 
 @keyframes scrollTicker {
     0% { transform: translateX(0); }
@@ -219,17 +216,8 @@ main {
     gap: 10px;
 }
 
-.ticker-item .dot {
-    color: var(--accent-green);
-    font-size: 1.2rem;
-    text-shadow: 0 0 8px var(--accent-green);
-}
-
-.ticker-item .time {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    font-weight: 400;
-}
+.ticker-item .dot { color: var(--accent-green); font-size: 1.2rem; text-shadow: 0 0 8px var(--accent-green); }
+.ticker-item .time { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
 
 /* --- PROFILE GRID --- */
 .profile-grid {
@@ -269,52 +257,70 @@ main {
     object-position: top;
 }
 
-/* --- BADGES --- */
-.active-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(11, 19, 32, 0.9);
-    backdrop-filter: blur(5px);
-    color: var(--accent-green);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border: 1px solid rgba(16, 185, 129, 0.5);
+/* --- NEW: INSTAGRAM/FACEBOOK STYLE PROFILE ICON --- */
+.card-top-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    z-index: 2;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(11, 19, 32, 0.5);
 }
 
-.active-badge::before {
-    content: '';
-    width: 10px;
-    height: 10px;
+.profile-icon-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.profile-icon-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(45deg, var(--primary-blue), #60A5FA);
+}
+
+.profile-icon-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--bg-card);
+}
+
+.active-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
     background-color: var(--accent-green);
     border-radius: 50%;
+    border: 2px solid var(--bg-dark);
     box-shadow: 0 0 8px var(--accent-green);
 }
 
-.verified-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(11, 19, 32, 0.9);
-    backdrop-filter: blur(5px);
-    color: var(--accent-gold);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border: 1px solid rgba(245, 158, 11, 0.5);
+.card-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header-info h3 {
+    font-size: 1.3rem;
+    color: var(--text-white);
+    margin-bottom: 2px;
     display: flex;
     align-items: center;
-    gap: 5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    z-index: 2;
+    gap: 8px;
+}
+
+.card-header-info .active-text {
+    color: var(--accent-green);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
 }
 
 /* --- CARD INFO --- */
