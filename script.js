@@ -4,6 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
 
+    // CONNECT MODAL ELEMENTS
+    const connectModal = document.getElementById('connectModal');
+    const connectModalTitle = document.getElementById('connectModalTitle');
+    const connectFormStep = document.getElementById('connectFormStep');
+    const connectSendStep = document.getElementById('connectSendStep');
+    const previewBtn = document.getElementById('previewBtn');
+    const backToFormBtn = document.getElementById('backToFormBtn');
+    const c_about = document.getElementById('c_about');
+    const charCount = document.getElementById('charCount');
+
+    // DIRECTOR AGGREY'S CONTACT DETAILS
+    const DIRECTOR_WHATSAPP = "447828793007"; // No + sign
+    const DIRECTOR_TELEGRAM = "Contactadminaggrey"; // No @ sign
+    const DIRECTOR_EMAIL = "genuinehookupconnection@gmail.com";
+
+    let currentProfileName = "";
+
     // --- LIVE TICKER DATA ---
     const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
     const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"];
@@ -42,58 +59,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CHECKBOX LOGIC ---
-    // Listen for when the user clicks the checkbox
     agreeCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            // If checked, unlock the button
-            proceedBtn.disabled = false;
-        } else {
-            // If unchecked, lock the button again
-            proceedBtn.disabled = true;
-        }
+        proceedBtn.disabled = !this.checked;
     });
 
-    // --- FORM SUBMISSION ---
+    // --- MAIN FORM SUBMISSION ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
-
         const userName = document.getElementById('userName').value;
 
         try {
             const response = await fetch('profiles.json');
-            
-            if (!response.ok) {
-                throw new Error("Could not load profiles.json.");
-            }
-
+            if (!response.ok) throw new Error("Could not load profiles.json.");
             const allProfiles = await response.json();
 
-            // 1. Show the Terms Modal FIRST
             termsModal.classList.remove('hidden');
 
-            // 2. Wait for her to tick the box and click "Proceed"
             proceedBtn.onclick = function() {
-                // Hide the terms modal
                 termsModal.classList.add('hidden');
-                
-                // Now show the matches
                 displayMatches(userName, allProfiles);
             };
-
         } catch (error) {
-            console.error("Error loading profiles:", error);
+            console.error("Error:", error);
             alert("Error: " + error.message);
         }
     });
 
     function displayMatches(userName, matches) {
-        // Hide the form and hero text
         document.getElementById('heroText').style.display = 'none';
         document.getElementById('formContainer').style.display = 'none';
 
         const resultsContainer = document.getElementById('resultsContainer');
         resultsContainer.classList.remove('hidden');
-
         document.getElementById('resultsGreeting').innerHTML = `Hi ${userName}, here are your matches!`;
 
         createTickerSlides();
@@ -156,11 +153,106 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>${profile.goal}</p>
                     </div>` : ''}
 
-                    <button class="btn-contact" onclick="alert('Chat feature is coming soon!')">Connect</button>
+                    <button class="btn-contact" onclick="openConnectForm('${profile.name}')">Connect</button>
                 </div>
             `;
             
             grid.appendChild(card);
         });
     }
+
+    // --- CONNECT FORM LOGIC ---
+
+    // 1. Open the form
+    window.openConnectForm = function(profileName) {
+        currentProfileName = profileName;
+        connectModalTitle.innerHTML = `Request Connection with ${profileName}`;
+        connectFormStep.classList.remove('hidden');
+        connectSendStep.classList.add('hidden');
+        connectModal.classList.remove('hidden');
+    };
+
+    // 2. Character counter for the text area
+    c_about.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        charCount.textContent = `${currentLength} / 800 characters`;
+        if (currentLength >= 800) {
+            charCount.style.color = 'var(--accent-red)';
+        } else {
+            charCount.style.color = 'var(--text-muted)';
+        }
+    });
+
+    // 3. Generate the message and show send options
+    previewBtn.addEventListener('click', function() {
+        // Check if all fields are filled (HTML required attribute handles most, but we double check textarea)
+        if (c_about.value.trim() === "") {
+            alert("Please write a short description about yourself.");
+            return;
+        }
+
+        // Collect data
+        const fullName = document.getElementById('c_fullName').value;
+        const age = document.getElementById('c_age').value;
+        const gender = document.getElementById('c_gender').value;
+        const phone = document.getElementById('c_phone').value;
+        const hiv = document.getElementById('c_hiv').value;
+        const kids = document.getElementById('c_kids').value;
+        const occupation = document.getElementById('c_occupation').value;
+        const location = document.getElementById('c_location').value;
+        const about = c_about.value;
+
+        // Format the message exactly as discussed
+        const message = 
+`Hello Director Aggrey,
+
+I am interested in connecting with *${currentProfileName}*. Here are my details:
+
+*Full Name:* ${fullName}
+*Age:* ${age}
+*Gender:* ${gender}
+*Phone/WhatsApp:* ${phone}
+*HIV Status:* ${hiv}
+*Kids:* ${kids}
+*Occupation:* ${occupation}
+*Location:* ${location}
+
+*About Me:*
+${about}`;
+
+        // Encode the message for URLs
+        const encodedMessage = encodeURIComponent(message);
+
+        // Set up the links
+        document.getElementById('sendWhatsapp').onclick = () => {
+            window.open(`https://wa.me/${DIRECTOR_WHATSAPP}?text=${encodedMessage}`, '_blank');
+        };
+
+        document.getElementById('sendTelegram').onclick = () => {
+            // Telegram link format
+            window.open(`https://t.me/${DIRECTOR_TELEGRAM}?text=${encodedMessage}`, '_blank');
+        };
+
+        document.getElementById('sendEmail').onclick = () => {
+            const subject = encodeURIComponent(`Connection Request for ${currentProfileName}`);
+            window.location.href = `mailto:${DIRECTOR_EMAIL}?subject=${subject}&body=${encodedMessage}`;
+        };
+
+        // Show Step 2
+        connectFormStep.classList.add('hidden');
+        connectSendStep.classList.remove('hidden');
+    });
+
+    // 4. Back button
+    backToFormBtn.addEventListener('click', function() {
+        connectSendStep.classList.add('hidden');
+        connectFormStep.classList.remove('hidden');
+    });
+
+    // Close modal if clicking outside (optional, but good for UX)
+    connectModal.addEventListener('click', function(e) {
+        if (e.target === connectModal) {
+            connectModal.classList.add('hidden');
+        }
+    });
 });
