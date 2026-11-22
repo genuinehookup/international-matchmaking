@@ -14,9 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const c_about = document.getElementById('c_about');
     const charCount = document.getElementById('charCount');
 
+    // HOW IT WORKS MODAL ELEMENTS
+    const howItWorksModal = document.getElementById('howItWorksModal');
+    const howItWorksBtn = document.getElementById('howItWorksBtn');
+    const closeHowItWorksBtn = document.getElementById('closeHowItWorksBtn');
+
     // DIRECTOR AGGREY'S CONTACT DETAILS
-    const DIRECTOR_WHATSAPP = "447828793007"; // No + sign
-    const DIRECTOR_TELEGRAM = "Contactadminaggrey"; // No @ sign
+    const DIRECTOR_WHATSAPP = "447828793007"; 
+    const DIRECTOR_TELEGRAM = "Contactadminaggrey"; 
     const DIRECTOR_EMAIL = "genuinehookupconnection@gmail.com";
 
     let currentProfileName = "";
@@ -57,6 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         track.innerHTML = slidesHTML + slidesHTML;
     }
+
+    // --- HOW IT WORKS LOGIC ---
+    howItWorksBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevents the page from jumping to the top
+        howItWorksModal.classList.remove('hidden');
+    });
+
+    closeHowItWorksBtn.addEventListener('click', () => {
+        howItWorksModal.classList.add('hidden');
+    });
 
     // --- CHECKBOX LOGIC ---
     agreeCheckbox.addEventListener('change', function() {
@@ -162,8 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CONNECT FORM LOGIC ---
-
-    // 1. Open the form
     window.openConnectForm = function(profileName) {
         currentProfileName = profileName;
         connectModalTitle.innerHTML = `Request Connection with ${profileName}`;
@@ -172,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         connectModal.classList.remove('hidden');
     };
 
-    // 2. Character counter for the text area
     c_about.addEventListener('input', function() {
         const currentLength = this.value.length;
         charCount.textContent = `${currentLength} / 800 characters`;
@@ -183,15 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Generate the message and show send options
     previewBtn.addEventListener('click', function() {
-        // Check if all fields are filled (HTML required attribute handles most, but we double check textarea)
         if (c_about.value.trim() === "") {
             alert("Please write a short description about yourself.");
             return;
         }
 
-        // Collect data
         const fullName = document.getElementById('c_fullName').value;
         const age = document.getElementById('c_age').value;
         const gender = document.getElementById('c_gender').value;
@@ -202,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const location = document.getElementById('c_location').value;
         const about = c_about.value;
 
-        // Format the message exactly as discussed
         const message = 
 `Hello Director Aggrey,
 
@@ -220,16 +228,13 @@ I am interested in connecting with *${currentProfileName}*. Here are my details:
 *About Me:*
 ${about}`;
 
-        // Encode the message for URLs
         const encodedMessage = encodeURIComponent(message);
 
-        // Set up the links
         document.getElementById('sendWhatsapp').onclick = () => {
             window.open(`https://wa.me/${DIRECTOR_WHATSAPP}?text=${encodedMessage}`, '_blank');
         };
 
         document.getElementById('sendTelegram').onclick = () => {
-            // Telegram link format
             window.open(`https://t.me/${DIRECTOR_TELEGRAM}?text=${encodedMessage}`, '_blank');
         };
 
@@ -238,18 +243,15 @@ ${about}`;
             window.location.href = `mailto:${DIRECTOR_EMAIL}?subject=${subject}&body=${encodedMessage}`;
         };
 
-        // Show Step 2
         connectFormStep.classList.add('hidden');
         connectSendStep.classList.remove('hidden');
     });
 
-    // 4. Back button
     backToFormBtn.addEventListener('click', function() {
         connectSendStep.classList.add('hidden');
         connectFormStep.classList.remove('hidden');
     });
 
-    // Close modal if clicking outside (optional, but good for UX)
     connectModal.addEventListener('click', function(e) {
         if (e.target === connectModal) {
             connectModal.classList.add('hidden');
