@@ -4,21 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
+        // DEBUG: Check if the form values are being read
         const userName = document.getElementById('userName').value;
         const seekGender = document.getElementById('seekGender').value;
 
+        if (!userName) {
+            alert("DEBUG ERROR: Name is empty!");
+            return;
+        }
+
         try {
+            // DEBUG: Tell us what the browser is trying to fetch
+            console.log("Trying to fetch profiles.json...");
+            
             const response = await fetch('profiles.json');
+            
+            // DEBUG: Check if the file was actually found
+            if (!response.ok) {
+                throw new Error(`Failed to load profiles.json. Status: ${response.status}. Make sure the file is named exactly profiles.json (all lowercase).`);
+            }
+
             const allProfiles = await response.json();
+            console.log("Profiles loaded successfully:", allProfiles);
 
             // Filter based on who they are seeking
-            const matches = allProfiles.filter(profile => profile.gender === seekGender || profile.gender === "Man"); // Temporary fix to ensure Gregory shows up
+            const matches = allProfiles.filter(profile => profile.gender === seekGender);
+            
+            // DEBUG: Check if the filter found anyone
+            if (matches.length === 0) {
+                alert("DEBUG ERROR: The file loaded, but no profiles matched your search. Check if 'gender' is spelled correctly in profiles.json.");
+                return;
+            }
 
             displayMatches(userName, matches);
 
         } catch (error) {
-            console.error("Error loading profiles:", error);
-            alert("Sorry, there was an error finding matches. Please try again.");
+            // THIS WILL SHOW THE EXACT ERROR ON SCREEN
+            console.error("THE ACTUAL ERROR IS:", error);
+            alert("WE FOUND THE ERROR:\n\n" + error.message + "\n\nPlease check your GitHub files.");
         }
     });
 
