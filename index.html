@@ -60,8 +60,19 @@
             </form>
         </div>
 
-        <!-- RESULTS WILL APPEAR HERE -->
-        <div id="resultsContainer" class="results-section hidden"></div>
+        <!-- RESULTS SECTION (Includes the new ticker container) -->
+        <div id="resultsContainer" class="results-section hidden">
+            <h2 id="resultsGreeting"></h2>
+            <p>Scroll down to see verified men who are active online right now.</p>
+            
+            <!-- THIS IS WHERE THE LIVE SLIDES WILL APPEAR -->
+            <div class="live-ticker-container" id="liveTicker">
+                <div class="ticker-track" id="tickerTrack"></div>
+            </div>
+
+            <div class="profile-grid" id="profileGrid"></div>
+            <button class="btn-secondary" onclick="location.reload()">Search Again</button>
+        </div>
     </main>
 
     <script src="script.js"></script>
