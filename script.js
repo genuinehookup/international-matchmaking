@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('matchForm');
-    const warningModal = document.getElementById('warningModal');
-    const agreeBtn = document.getElementById('agreeBtn');
+    const termsModal = document.getElementById('termsModal');
+    const agreeCheckbox = document.getElementById('agreeCheckbox');
+    const proceedBtn = document.getElementById('proceedBtn');
 
     // --- LIVE TICKER DATA ---
     const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
@@ -40,14 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
         track.innerHTML = slidesHTML + slidesHTML;
     }
 
-    // --- FORM SUBMISSION (Shows Warning FIRST) ---
+    // --- CHECKBOX LOGIC ---
+    // Listen for when the user clicks the checkbox
+    agreeCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            // If checked, unlock the button
+            proceedBtn.disabled = false;
+        } else {
+            // If unchecked, lock the button again
+            proceedBtn.disabled = true;
+        }
+    });
+
+    // --- FORM SUBMISSION ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const userName = document.getElementById('userName').value;
 
         try {
-            // Fetch the data in the background while the warning is shown
             const response = await fetch('profiles.json');
             
             if (!response.ok) {
@@ -56,13 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const allProfiles = await response.json();
 
-            // 1. Show the Warning Modal FIRST
-            warningModal.classList.remove('hidden');
+            // 1. Show the Terms Modal FIRST
+            termsModal.classList.remove('hidden');
 
-            // 2. Wait for her to click "I Agree"
-            agreeBtn.onclick = function() {
-                // Hide the warning
-                warningModal.classList.add('hidden');
+            // 2. Wait for her to tick the box and click "Proceed"
+            proceedBtn.onclick = function() {
+                // Hide the terms modal
+                termsModal.classList.add('hidden');
                 
                 // Now show the matches
                 displayMatches(userName, allProfiles);
