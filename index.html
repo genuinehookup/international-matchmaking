@@ -104,12 +104,12 @@
         </div>
     </div>
 
-    <!-- CONNECT FORM MODAL -->
+    <!-- CONNECT & PAYMENT MODAL -->
     <div id="connectModal" class="modal-overlay hidden">
         <div class="modal-content connect-modal-content">
             <h2 id="connectModalTitle">Request Connection</h2>
             
-            <!-- STEP 1: The Form -->
+            <!-- STEP 1: The Details Form -->
             <div id="connectFormStep">
                 <div class="form-grid">
                     <div class="input-group">
@@ -162,7 +162,46 @@
                 <button type="button" id="previewBtn" class="btn-primary" style="margin-top: 20px;">Submit</button>
             </div>
 
-            <!-- STEP 2: The Send Options (Hidden at first) -->
+            <!-- STEP 2: The Payment Package Options (Hidden at first) -->
+            <div id="paymentStep" class="hidden">
+                <h3 style="color: var(--text-white); margin-bottom: 10px; text-align: center;">Why is there a premium connection fee?</h3>
+                
+                <ul class="reasons-list">
+                    <li><strong>🛡️ 100% Verified & Vetted Members:</strong> We keep scammers out.</li>
+                    <li><strong>🎯 Dedicated Matchmaking:</strong> Director Aggrey personally reviews your profile.</li>
+                    <li><strong>🔒 Total Privacy & Safety:</strong> Your details are kept strictly confidential.</li>
+                    <li><strong>⏱️ Priority Connections:</strong> Your request is fast-tracked.</li>
+                    <li><strong>💍 For Marriage:</strong> A premium platform for lifelong commitments.</li>
+                </ul>
+
+                <h3 style="color: var(--primary-blue); margin: 20px 0 15px 0; text-align: center;">Select Your Connection Package</h3>
+                
+                <div class="package-options">
+                    <label class="package-card recommended">
+                        <input type="radio" name="package" value="Normal Connection - $10" checked>
+                        <div class="package-content">
+                            <div class="package-badge">⭐ RECOMMENDED</div>
+                            <h4>Normal Connection</h4>
+                            <div class="package-price">$10</div>
+                            <p>Standard review and direct matchmaking forward to your chosen man.</p>
+                        </div>
+                    </label>
+
+                    <label class="package-card">
+                        <input type="radio" name="package" value="VIP Private Matchup - $50">
+                        <div class="package-content">
+                            <div class="package-badge vip">👑 VIP</div>
+                            <h4>VIP Private Matchup</h4>
+                            <div class="package-price">$50</div>
+                            <p>Director Aggrey personally handles your case and arranges a priority introduction.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <button type="button" id="confirmPackageBtn" class="btn-primary" style="margin-top: 20px;">Confirm & Proceed</button>
+            </div>
+
+            <!-- STEP 3: The Send Options (Hidden at first) -->
             <div id="connectSendStep" class="hidden">
                 <p style="text-align: center; margin-bottom: 20px; color: var(--text-light); font-size: 1.05rem;">Your profile is ready! Please choose how you would like to submit it:</p>
                 
