@@ -63,7 +63,7 @@
         <!-- RESULTS SECTION -->
         <div id="resultsContainer" class="results-section hidden">
             <h2 id="resultsGreeting"></h2>
-            <p>Scroll down to see verified men who are active online right now.</p>
+            <p>Scroll down to see verified members who are active online right now.</p>
             
             <!-- LIVE TICKER -->
             <div class="live-ticker-container" id="liveTicker">
@@ -75,18 +75,35 @@
         </div>
     </main>
 
-    <!-- STRICT WARNING MODAL -->
-    <div id="warningModal" class="modal-overlay hidden">
+    <!-- TERMS AND CONDITIONS MODAL -->
+    <div id="termsModal" class="modal-overlay hidden">
         <div class="modal-content">
             <div class="modal-icon">🛑</div>
-            <h2>STRICT WARNING & WELCOME</h2>
+            <h2>TERMS AND CONDITIONS</h2>
+            
             <div class="modal-body">
-                <p>Welcome to International-Matchmaking. We are a premium platform for serious individuals looking for marriage.</p>
-                <p class="warning-text">❌ <strong>NO UNDER 18:</strong> We strictly prohibit anyone under the age of 18. If you are under 18, you are not welcome here.</p>
-                <p class="warning-text">❌ <strong>NO JOKERS OR TIME WASTERS:</strong> This is not a game. If you have dishonest intentions or are just looking for casual chats, please leave immediately. We do not entertain time-wasters.</p>
-                <p class="success-text">✅ <strong>QUALIFIED MEMBERS ONLY:</strong> If you are a serious woman ready for true love and marriage, we welcome you.</p>
+                <ol class="rules-list">
+                    <li><strong>STRICTLY 18+:</strong> You must be at least 18 years old to use this platform.</li>
+                    <li><strong>SERIOUS INDIVIDUALS ONLY:</strong> This platform is strictly for genuine people looking for a committed relationship and marriage.</li>
+                    <li><strong>NO TIME WASTERS:</strong> Jokers, scammers, and people looking for casual chats are strictly prohibited.</li>
+                    <li><strong>HONESTY IS MANDATORY:</strong> All information and photos provided must be 100% real and genuine.</li>
+                    <li><strong>RESPECT ALL CULTURES:</strong> Treat everyone with respect. Discrimination or disrespectful behavior will result in an immediate ban.</li>
+                    <li><strong>PRIVACY & SAFETY:</strong> Do not share your personal financial information or passwords with anyone on this platform.</li>
+                    <li><strong>AGREEMENT TO PROCEED:</strong> If you agree to all the rules above and are ready for a serious connection, please tick the checkbox below to confirm and proceed.</li>
+                </ol>
             </div>
-            <button id="agreeBtn" class="btn-primary">I Agree & I Am Serious</button>
+
+            <!-- THE CHECKBOX AND BUTTON -->
+            <div class="terms-action-area">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckbox">
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">I confirm I am over 18, serious, and I agree to the 7 rules above.</span>
+                </label>
+
+                <!-- Button starts disabled -->
+                <button id="proceedBtn" class="btn-primary" disabled>PROCEED TO MATCHES</button>
+            </div>
         </div>
     </div>
 
