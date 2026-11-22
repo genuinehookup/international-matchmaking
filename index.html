@@ -15,7 +15,7 @@
             <div class="logo-text">International-Matchmaking</div>
         </div>
         <div class="header-right">
-            <a href="#" class="link">How it Works</a>
+            <a href="#" class="link" id="howItWorksBtn">How it Works</a>
         </div>
     </header>
 
@@ -164,7 +164,7 @@
 
             <!-- STEP 2: The Send Options (Hidden at first) -->
             <div id="connectSendStep" class="hidden">
-                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light);">Your message is ready! Choose how you want to send it to Director Aggrey:</p>
+                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light); font-size: 1.05rem;">Your profile is ready! Please choose how you would like to submit it:</p>
                 
                 <div class="send-options-grid">
                     <button id="sendWhatsapp" class="btn-send whatsapp">🟢 Send via WhatsApp</button>
@@ -174,6 +174,44 @@
                 
                 <button type="button" id="backToFormBtn" class="btn-secondary" style="margin-top: 20px; width: 100%;">⬅ Back to Edit</button>
             </div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS MODAL -->
+    <div id="howItWorksModal" class="modal-overlay hidden">
+        <div class="modal-content how-it-works-content">
+            <div class="modal-icon" style="color: var(--primary-blue);">ℹ️</div>
+            <h2>HOW IT WORKS</h2>
+            
+            <div class="modal-body">
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h3>Browse Verified Profiles</h3>
+                            <p>Explore our curated list of serious, verified international men who are actively seeking marriage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h3>Submit a Connection Request</h3>
+                            <p>Found someone you like? Click "Connect" and fill out your details. Tell us about yourself and your intentions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h3>Direct Contact with Director Aggrey</h3>
+                            <p>Choose to send your details directly to Director Aggrey via WhatsApp, Telegram, or Email. Our team will review your profile and arrange a secure, private introduction with the gentleman.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="closeHowItWorksBtn" class="btn-primary">I Understand</button>
         </div>
     </div>
 
