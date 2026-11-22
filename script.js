@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const howItWorksBtn = document.getElementById('howItWorksBtn');
     const closeHowItWorksBtn = document.getElementById('closeHowItWorksBtn');
 
-    // DIRECTOR AGGREY'S CONTACT DETAILS
+    // DIRECTOR'S CONTACT DETAILS
     const DIRECTOR_WHATSAPP = "447828793007"; 
     const DIRECTOR_TELEGRAM = "Contactadminaggrey"; 
     const DIRECTOR_EMAIL = "genuinehookupconnection@gmail.com";
@@ -228,9 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const location = document.getElementById('c_location').value;
         const about = c_about.value;
 
-        // Format the message exactly as agreed (ends with her description)
+        // Format the message exactly as agreed (No "Aggrey", ends with her description)
         const message = 
-`Hello Director Aggrey,
+`Hello Director,
 
 I am interested in connecting with *${currentProfileName}*.
 
