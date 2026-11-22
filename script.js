@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('matchForm');
 
-    // REPLACE THIS WITH YOUR REAL EMAIL ADDRESS
-    const ADMIN_EMAIL = "your-email@example.com"; 
-
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Build the HTML inside the results container
         resultsContainer.innerHTML = `
             <h2>Hi ${userName}, here are your matches!</h2>
-            <p>These members match what you're looking for.</p>
+            <p>Scroll down to see men who are active online right now.</p>
             <div class="profile-grid" id="profileGrid"></div>
             <button class="btn-secondary" onclick="location.reload()">Search Again</button>
         `;
@@ -49,26 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.innerHTML = `
                 <div class="card-image-container">
-                    <span class="active-badge">🟢 ${profile.status}</span>
+                    <span class="active-badge">${profile.status}</span>
                     <img src="${profile.image}" alt="${profile.name}">
                 </div>
                 <div class="card-info">
                     <h3>${profile.name}</h3>
                     <p>📍 ${profile.location} • ${profile.age} yrs</p>
-                    <button class="btn-contact" onclick="connectWith('${profile.name}', '${userName}')">Connect</button>
+                    <button class="btn-contact" onclick="alert('Chat feature is coming soon!')">Connect</button>
                 </div>
             `;
             
             grid.appendChild(card);
         });
     }
-
-    // This function runs when they click "Connect"
-    window.connectWith = function(profileName, userName) {
-        const subject = encodeURIComponent(`Match Request: ${userName} wants to connect with ${profileName}`);
-        const body = encodeURIComponent(`Hello Admin,\n\nMy name is ${userName} and I am interested in connecting with ${profileName}.\n\nPlease help us get in touch!\n\nThank you.`);
-        
-        // Open the user's default email app
-        window.location.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
-    };
 });
