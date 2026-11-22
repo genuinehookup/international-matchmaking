@@ -20,11 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const track = document.getElementById('tickerTrack');
         if (!track) return;
 
-        // We generate 15 "slides" of successful matches
         let slidesHTML = '';
         for (let i = 0; i < 15; i++) {
             const man = getRandomName();
-            const woman = getRandomName().split(' ')[0]; // Just the first name for the woman
+            const woman = getRandomName().split(' ')[0]; 
             const time = getRandomTime();
             
             slidesHTML += `
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
         
-        // Duplicate the slides so the scroll is seamless
         track.innerHTML = slidesHTML + slidesHTML;
     }
 
@@ -64,33 +62,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function displayMatches(userName, matches) {
-        // Hide the form and hero text
         document.getElementById('heroText').style.display = 'none';
         document.getElementById('formContainer').style.display = 'none';
 
         const resultsContainer = document.getElementById('resultsContainer');
         resultsContainer.classList.remove('hidden');
 
-        // Set the personalized greeting
         document.getElementById('resultsGreeting').innerHTML = `Hi ${userName}, here are your matches!`;
 
-        // Initialize the live ticker slides
         createTickerSlides();
 
         const grid = document.getElementById('profileGrid');
-        grid.innerHTML = ''; // Clear grid just in case
+        grid.innerHTML = ''; 
 
-        // Loop through EVERY profile and create a card
         matches.forEach(profile => {
             const card = document.createElement('div');
             card.className = 'profile-card';
             
+            // HERE IS THE NEW FACEBOOK-STYLE TOP BAR
             card.innerHTML = `
+                <div class="card-top-bar">
+                    <div class="profile-icon-wrapper">
+                        <div class="profile-icon-ring">
+                            <img class="profile-icon-img" src="${profile.image}" alt="${profile.name}">
+                        </div>
+                        <div class="active-dot"></div>
+                    </div>
+                    <div class="card-header-info">
+                        <h3>${profile.name} <span style="color: var(--accent-gold); font-size: 0.9rem;">🛡️</span></h3>
+                        <p class="active-text">Active Now</p>
+                    </div>
+                </div>
+
                 <div class="card-image-container">
-                    <span class="active-badge">${profile.status}</span>
-                    <span class="verified-badge">🛡️ Verified Profile</span>
                     <img src="${profile.image}" alt="${profile.name}">
                 </div>
+                
                 <div class="card-info">
                     <div class="card-header">
                         <h3>${profile.name}, ${profile.age}</h3>
