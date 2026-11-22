@@ -1,22 +1,14 @@
 /* --- THE "GLOBAL PRESTIGE" PALETTE --- */
 :root {
-    /* Backgrounds */
-    --bg-dark: #0B1320;         /* Deep Midnight Blue */
-    --bg-card: #131E30;         /* Slightly lighter blue for form */
-    
-    /* Buttons & Actions */
-    --primary-blue: #2563EB;    /* Vibrant Royal Blue */
-    --primary-hover: #1D4ED8;   /* Darker blue for hover */
-    
-    /* Accents (The Mixture) */
-    --accent-red: #E11D48;      /* Rich Crimson Red for Love/Passion */
-    --accent-green: #10B981;    /* Emerald Green for Trust/Active status */
-    
-    /* Text */
+    --bg-dark: #0B1320;         
+    --bg-card: #131E30;         
+    --primary-blue: #2563EB;    
+    --primary-hover: #1D4ED8;   
+    --accent-red: #E11D48;      
+    --accent-green: #10B981;    
     --text-white: #FFFFFF;
     --text-light: #E2E8F0;
     --text-muted: #94A3B8;
-    
     --border-color: #1E2D45;
 }
 
@@ -53,7 +45,6 @@ header {
     gap: 15px;
 }
 
-/* THE BIG LOVE FRAME */
 .love-frame {
     background: linear-gradient(135deg, var(--accent-red), #BE123C);
     padding: 12px 15px;
@@ -171,7 +162,6 @@ main {
     box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
 }
 
-/* THE BLUE BUTTON */
 .btn-primary {
     background-color: var(--primary-blue);
     color: var(--text-white);
@@ -193,15 +183,16 @@ main {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* --- RESULTS SECTION --- */
+/* --- RESULTS SECTION (Profile Cards) --- */
 .hidden {
     display: none !important;
 }
 
 .results-section {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px; /* Wider for the grid */
     animation: fadeIn 0.8s ease-in-out;
+    padding-bottom: 50px; /* Space at the bottom for scrolling */
 }
 
 @keyframes fadeIn {
@@ -220,10 +211,12 @@ main {
     margin-bottom: 40px;
 }
 
+/* THE SCROLLABLE GRID */
 .profile-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    /* This creates 3 columns on desktop, 1 on mobile */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
     margin-bottom: 40px;
 }
 
@@ -233,6 +226,7 @@ main {
     overflow: hidden;
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
 }
 
 .profile-card:hover {
@@ -243,7 +237,7 @@ main {
 
 .card-image-container {
     position: relative;
-    height: 350px;
+    height: 400px; /* Taller image for a better dating look */
     width: 100%;
 }
 
@@ -253,31 +247,42 @@ main {
     object-fit: cover;
 }
 
-/* GREEN ACTIVE BADGE */
+/* THE GREEN ACTIVE BADGE */
 .active-badge {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: rgba(11, 19, 32, 0.8);
+    background: rgba(11, 19, 32, 0.85);
     backdrop-filter: blur(5px);
     color: var(--accent-green);
-    padding: 6px 12px;
+    padding: 8px 14px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.5);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* The glowing green dot */
+.active-badge::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-green);
 }
 
 .card-info {
     padding: 20px;
-    text-align: left;
 }
 
 .card-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--text-white);
     margin-bottom: 5px;
 }
@@ -285,15 +290,16 @@ main {
 .card-info p {
     color: var(--text-muted);
     margin-bottom: 20px;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
+/* CONNECT BUTTON (Inactive for now) */
 .btn-contact {
     width: 100%;
     background: transparent;
     border: 2px solid var(--primary-blue);
     color: var(--primary-blue);
-    padding: 12px;
+    padding: 14px;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 700;
@@ -328,4 +334,5 @@ main {
     #matchForm { flex-direction: column; align-items: stretch; }
     .logo-text { font-size: 1rem; }
     .love-frame { font-size: 1.5rem; padding: 8px 10px; }
+    .card-image-container { height: 350px; }
 }
