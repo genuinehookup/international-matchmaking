@@ -623,27 +623,6 @@ main {
 }
 
 /* --- PAYMENT PACKAGE STYLES --- */
-.reasons-list {
-    text-align: left;
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-    background: rgba(37, 99, 235, 0.05);
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.reasons-list li {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.reasons-list li strong {
-    color: var(--text-white);
-}
-
 .package-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -717,6 +696,34 @@ main {
     color: var(--text-muted);
     font-size: 0.85rem;
     line-height: 1.4;
+}
+
+/* --- REASONS FOR PAYMENT --- */
+.reasons-section {
+    text-align: left;
+}
+
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.reasons-list li {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    background: var(--bg-dark);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-blue);
+}
+
+.reasons-list li strong {
+    color: var(--text-white);
+    display: block;
+    margin-bottom: 3px;
 }
 
 /* --- SEND OPTIONS BUTTONS --- */
