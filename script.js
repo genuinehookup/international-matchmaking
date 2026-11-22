@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'profile-card';
             
-            // HERE IS THE NEW FACEBOOK-STYLE TOP BAR
+            // Build the HTML conditionally (only show About Me and Goal if they exist)
             card.innerHTML = `
                 <div class="card-top-bar">
                     <div class="profile-icon-wrapper">
@@ -114,10 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>${profile.lookingFor}</p>
                     </div>
 
+                    ${profile.aboutMe ? `
+                    <div class="bio-section">
+                        <h4>🌹 A Little About Me</h4>
+                        <p>${profile.aboutMe}</p>
+                    </div>` : ''}
+
                     <div class="intentions-box">
                         <h4>✈️ My Intentions</h4>
                         <p>${profile.intentions}</p>
                     </div>
+
+                    ${profile.goal ? `
+                    <div class="bio-section" style="margin-top: 15px;">
+                        <h4>💖 My Goal</h4>
+                        <p>${profile.goal}</p>
+                    </div>` : ''}
 
                     <button class="btn-contact" onclick="alert('Chat feature is coming soon!')">Connect</button>
                 </div>
