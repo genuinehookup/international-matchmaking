@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const howItWorksBtn = document.getElementById('howItWorksBtn');
     const closeHowItWorksBtn = document.getElementById('closeHowItWorksBtn');
 
+    // FLOATING CONTACT ELEMENTS
+    const floatingContactBtn = document.getElementById('floatingContactBtn');
+    const contactPopup = document.getElementById('contactPopup');
+    const floatWhatsapp = document.getElementById('floatWhatsapp');
+    const floatTelegram = document.getElementById('floatTelegram');
+    const floatEmail = document.getElementById('floatEmail');
+
     // DIRECTOR'S CONTACT DETAILS
     const DIRECTOR_WHATSAPP = "447828793007"; 
     const DIRECTOR_TELEGRAM = "Contactadminaggrey"; 
@@ -73,6 +80,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeHowItWorksBtn.addEventListener('click', () => {
         howItWorksModal.classList.add('hidden');
+    });
+
+    // --- FLOATING CONTACT BUTTON LOGIC ---
+    const contactMessage = encodeURIComponent("Hello Director, I am on the International-Matchmaking website and I have a question.");
+    
+    // Set the links
+    floatWhatsapp.href = `https://wa.me/${DIRECTOR_WHATSAPP}?text=${contactMessage}`;
+    floatTelegram.href = `https://t.me/${DIRECTOR_TELEGRAM}`; // Telegram doesn't support pre-filled text via URL easily without a bot, so we just link to profile
+    floatEmail.href = `mailto:${DIRECTOR_EMAIL}?subject=Question about International-Matchmaking`;
+
+    // Toggle Popup
+    floatingContactBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        contactPopup.classList.toggle('hidden');
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!contactPopup.classList.contains('hidden') && !contactPopup.contains(e.target) && e.target !== floatingContactBtn) {
+            contactPopup.classList.add('hidden');
+        }
     });
 
     // --- CHECKBOX LOGIC ---
@@ -255,7 +283,7 @@ ${about}`;
         };
 
         document.getElementById('sendTelegram').onclick = () => {
-            window.open(`https://t.me/${DIRECTOR_TELEGRAM}?text=${encodedMessage}`, '_blank');
+            window.open(`https://t.me/${DIRECTOR_TELEGRAM}`, '_blank');
         };
 
         document.getElementById('sendEmail').onclick = () => {
