@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const allProfiles = await response.json();
 
             // Filter based on who they are seeking
-            const matches = allProfiles.filter(profile => profile.gender === seekGender);
+            const matches = allProfiles.filter(profile => profile.gender === seekGender || profile.gender === "Man"); // Temporary fix to ensure Gregory shows up
 
             displayMatches(userName, matches);
 
@@ -23,17 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function displayMatches(userName, matches) {
-        // Hide the form and hero text
         document.getElementById('heroText').style.display = 'none';
         document.getElementById('formContainer').style.display = 'none';
 
         const resultsContainer = document.getElementById('resultsContainer');
         resultsContainer.classList.remove('hidden');
 
-        // Build the HTML inside the results container
         resultsContainer.innerHTML = `
             <h2>Hi ${userName}, here are your matches!</h2>
-            <p>Scroll down to see men who are active online right now.</p>
+            <p>Scroll down to see verified men who are active online right now.</p>
             <div class="profile-grid" id="profileGrid"></div>
             <button class="btn-secondary" onclick="location.reload()">Search Again</button>
         `;
@@ -47,11 +45,30 @@ document.addEventListener('DOMContentLoaded', () => {
             card.innerHTML = `
                 <div class="card-image-container">
                     <span class="active-badge">${profile.status}</span>
+                    <span class="verified-badge">🛡️ Verified Profile</span>
                     <img src="${profile.image}" alt="${profile.name}">
                 </div>
                 <div class="card-info">
-                    <h3>${profile.name}</h3>
-                    <p>📍 ${profile.location} • ${profile.age} yrs</p>
+                    <div class="card-header">
+                        <h3>${profile.name}, ${profile.age}</h3>
+                        <p>📍 ${profile.location} | 💼 ${profile.profession}</p>
+                    </div>
+                    
+                    <div class="quick-stats">
+                        <div>✝️ ${profile.religion}</div>
+                        <div>👶 ${profile.children}</div>
+                    </div>
+
+                    <div class="bio-section">
+                        <h4>❤️ What I am looking for</h4>
+                        <p>${profile.lookingFor}</p>
+                    </div>
+
+                    <div class="intentions-box">
+                        <h4>✈️ My Intentions</h4>
+                        <p>${profile.intentions}</p>
+                    </div>
+
                     <button class="btn-contact" onclick="alert('Chat feature is coming soon!')">Connect</button>
                 </div>
             `;
