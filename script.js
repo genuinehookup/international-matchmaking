@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
 
-    // CONNECT MODAL ELEMENTS
+    // CONNECT & PAYMENT MODAL ELEMENTS
     const connectModal = document.getElementById('connectModal');
     const connectModalTitle = document.getElementById('connectModalTitle');
     const connectFormStep = document.getElementById('connectFormStep');
+    const paymentStep = document.getElementById('paymentStep');
     const connectSendStep = document.getElementById('connectSendStep');
     const previewBtn = document.getElementById('previewBtn');
+    const confirmPackageBtn = document.getElementById('confirmPackageBtn');
     const backToFormBtn = document.getElementById('backToFormBtn');
     const c_about = document.getElementById('c_about');
     const charCount = document.getElementById('charCount');
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- HOW IT WORKS LOGIC ---
     howItWorksBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevents the page from jumping to the top
+        e.preventDefault(); 
         howItWorksModal.classList.remove('hidden');
     });
 
@@ -176,12 +178,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- CONNECT FORM LOGIC ---
+    // --- CONNECT & PAYMENT LOGIC ---
     window.openConnectForm = function(profileName) {
         currentProfileName = profileName;
         connectModalTitle.innerHTML = `Request Connection with ${profileName}`;
+        
+        // Reset steps
         connectFormStep.classList.remove('hidden');
+        paymentStep.classList.add('hidden');
         connectSendStep.classList.add('hidden');
+        
+        // Show modal
         connectModal.classList.remove('hidden');
     };
 
@@ -195,11 +202,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Step 1 to Step 2: Move from Details to Payment Screen
     previewBtn.addEventListener('click', function() {
         if (c_about.value.trim() === "") {
             alert("Please write a short description about yourself.");
             return;
         }
+
+        connectFormStep.classList.add('hidden');
+        paymentStep.classList.remove('hidden');
+    });
+
+    // Step 2 to Step 3: Confirm Package and generate links
+    confirmPackageBtn.addEventListener('click', function() {
+        // Get the selected package
+        const selectedPackage = document.querySelector('input[name="package"]:checked').value;
 
         const fullName = document.getElementById('c_fullName').value;
         const age = document.getElementById('c_age').value;
@@ -211,10 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const location = document.getElementById('c_location').value;
         const about = c_about.value;
 
+        // Format the message exactly as agreed (ends with her description)
         const message = 
 `Hello Director Aggrey,
 
-I am interested in connecting with *${currentProfileName}*. Here are my details:
+I am interested in connecting with *${currentProfileName}*.
+
+*SELECTED PACKAGE:* ${selectedPackage}
 
 *Full Name:* ${fullName}
 *Age:* ${age}
@@ -239,14 +259,16 @@ ${about}`;
         };
 
         document.getElementById('sendEmail').onclick = () => {
-            const subject = encodeURIComponent(`Connection Request for ${currentProfileName}`);
+            const subject = encodeURIComponent(`Connection Request for ${currentProfileName} - ${selectedPackage}`);
             window.location.href = `mailto:${DIRECTOR_EMAIL}?subject=${subject}&body=${encodedMessage}`;
         };
 
-        connectFormStep.classList.add('hidden');
+        // Show Step 3
+        paymentStep.classList.add('hidden');
         connectSendStep.classList.remove('hidden');
     });
 
+    // Back button from Step 3 to Step 1
     backToFormBtn.addEventListener('click', function() {
         connectSendStep.classList.add('hidden');
         connectFormStep.classList.remove('hidden');
