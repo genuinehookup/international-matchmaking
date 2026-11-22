@@ -112,7 +112,7 @@ main {
     letter-spacing: 0.5px;
 }
 
-.input-group input, .input-group select {
+.input-group input, .input-group select, .input-group textarea {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
     color: var(--text-white);
@@ -121,9 +121,12 @@ main {
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
 }
 
-.input-group input:focus, .input-group select:focus {
+.input-group textarea { resize: vertical; min-height: 100px; }
+
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
     border-color: var(--primary-blue);
     box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
 }
@@ -149,7 +152,6 @@ main {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* Disabled Button Style */
 .btn-primary:disabled {
     background-color: #334155;
     color: #94A3B8;
@@ -400,7 +402,7 @@ main {
 
 .btn-secondary:hover { background: var(--text-white); color: var(--bg-dark); }
 
-/* --- TERMS AND CONDITIONS MODAL --- */
+/* --- MODALS (Terms & Connect) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -424,14 +426,35 @@ main {
     max-width: 650px;
     width: 100%;
     max-height: 90vh;
-    overflow-y: auto; /* Allows scrolling if the rules are too long */
+    overflow-y: auto; 
     text-align: center;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(225, 29, 72, 0.2);
     animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-top: 5px solid var(--accent-red);
 }
 
-/* Custom Scrollbar for Modal */
+/* Connect Modal specific styles */
+.connect-modal-content {
+    max-width: 800px;
+    border-top: 5px solid var(--primary-blue);
+}
+
+.connect-modal-content h2 {
+    color: var(--primary-blue);
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    text-align: left;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
 .modal-content::-webkit-scrollbar { width: 8px; }
 .modal-content::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 10px; }
 .modal-content::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
@@ -521,14 +544,8 @@ main {
     margin-top: 2px;
 }
 
-.checkbox-container:hover input ~ .checkmark {
-    border-color: var(--primary-blue);
-}
-
-.checkbox-container input:checked ~ .checkmark {
-    background-color: var(--primary-blue);
-    border-color: var(--primary-blue);
-}
+.checkbox-container:hover input ~ .checkmark { border-color: var(--primary-blue); }
+.checkbox-container input:checked ~ .checkmark { background-color: var(--primary-blue); border-color: var(--primary-blue); }
 
 .checkmark:after {
     content: "";
@@ -543,9 +560,7 @@ main {
     transform: rotate(45deg);
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
-    display: block;
-}
+.checkbox-container input:checked ~ .checkmark:after { display: block; }
 
 .checkbox-text {
     color: var(--text-white);
@@ -554,6 +569,35 @@ main {
     line-height: 1.4;
 }
 
+/* --- SEND OPTIONS BUTTONS --- */
+.send-options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-send {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-send:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+
+.whatsapp { background-color: #25D366; color: white; }
+.telegram { background-color: #0088cc; color: white; }
+.email { background-color: #EA4335; color: white; }
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
@@ -563,4 +607,6 @@ main {
     .modal-content { padding: 25px; }
     .modal-content h2 { font-size: 1.4rem; }
     .modal-body { padding: 15px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .full-width { grid-column: span 1; }
 }
