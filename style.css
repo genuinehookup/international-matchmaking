@@ -1,11 +1,11 @@
 /* --- THE "GLOBAL PRESTIGE" PALETTE --- */
 :root {
     /* Backgrounds */
-    --bg-dark: #0B1320;         /* Deep Midnight Blue (Trust & Luxury) */
+    --bg-dark: #0B1320;         /* Deep Midnight Blue */
     --bg-card: #131E30;         /* Slightly lighter blue for form */
     
     /* Buttons & Actions */
-    --primary-blue: #2563EB;    /* Vibrant Royal Blue for buttons */
+    --primary-blue: #2563EB;    /* Vibrant Royal Blue */
     --primary-hover: #1D4ED8;   /* Darker blue for hover */
     
     /* Accents (The Mixture) */
@@ -33,7 +33,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Subtle sexy glow in the background mixing blue and a hint of red */
     background-image: radial-gradient(circle at 50% 0%, #1A253A 0%, var(--bg-dark) 60%);
 }
 
@@ -57,18 +56,18 @@ header {
 /* THE BIG LOVE FRAME */
 .love-frame {
     background: linear-gradient(135deg, var(--accent-red), #BE123C);
-    padding: 10px 12px;
-    border-radius: 12px;
-    font-size: 1.8rem;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.5);
     border: 2px solid #FB7185;
 }
 
 .logo-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 1.5px;
     color: var(--text-white);
@@ -107,7 +106,6 @@ main {
 
 .hero-text h1 span {
     color: var(--primary-blue);
-    /* A slight text glow for the blue */
     text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
 }
 
@@ -127,8 +125,7 @@ main {
     max-width: 900px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 
                 inset 0 1px 0 rgba(255,255,255,0.05);
-    /* Subtle green glow to represent safety/trust */
-    border-bottom: 3px solid var(--accent-green);
+    border-bottom: 4px solid var(--accent-green);
 }
 
 #matchForm {
@@ -196,7 +193,7 @@ main {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* --- RESULTS SECTION (Profile Cards) --- */
+/* --- RESULTS SECTION --- */
 .hidden {
     display: none !important;
 }
@@ -330,5 +327,5 @@ main {
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
     .logo-text { font-size: 1rem; }
-    .love-frame { font-size: 1.3rem; padding: 6px 8px; }
+    .love-frame { font-size: 1.5rem; padding: 8px 10px; }
 }
