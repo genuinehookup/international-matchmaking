@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Gregory James",
+    "gender": "Man",
     "age": 36,
     "location": "Toronto, Canada 🇨🇦",
     "profession": "Engineer & Businessman",
