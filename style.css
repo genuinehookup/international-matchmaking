@@ -1,0 +1,171 @@
+/* --- THE SEXY "MIDNIGHT ROMANCE" PALETTE --- */
+:root {
+    --bg-dark: #120D0C;         /* Deep intimate background */
+    --bg-card: #1C1514;         /* Slightly lighter for form */
+    --primary-peach: #E5987A;   /* Warm, romantic button color */
+    --primary-hover: #D18061;   /* Darker peach for hover */
+    --text-light: #F3D3B8;      /* Champagne gold for headings */
+    --text-white: #FFFFFF;
+    --text-muted: #A69C9A;
+    --border-color: #3A2C2A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Subtle sexy glow in the background */
+    background-image: radial-gradient(circle at 50% 0%, #2A1B18 0%, var(--bg-dark) 70%);
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: rgba(18, 13, 12, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo span {
+    color: var(--primary-peach);
+    font-size: 1.5rem;
+}
+
+.header-right .link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.header-right .link:hover {
+    color: var(--primary-peach);
+}
+
+/* --- MAIN SECTION --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-text h1 span {
+    color: var(--primary-peach);
+}
+
+.hero-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* --- THE FORM CONTAINER --- */
+.match-form-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+#matchForm {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+    min-width: 150px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group input, 
+.input-group select {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--primary-peach);
+}
+
+/* The Button */
+.btn-primary {
+    background-color: var(--primary-peach);
+    color: #1A1514;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(229, 152, 122, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 2rem; }
+    #matchForm { flex-direction: column; align-items: stretch; }
+}
