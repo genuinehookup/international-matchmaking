@@ -60,12 +60,12 @@
             </form>
         </div>
 
-        <!-- RESULTS SECTION (Includes the new ticker container) -->
+        <!-- RESULTS SECTION -->
         <div id="resultsContainer" class="results-section hidden">
             <h2 id="resultsGreeting"></h2>
             <p>Scroll down to see verified men who are active online right now.</p>
             
-            <!-- THIS IS WHERE THE LIVE SLIDES WILL APPEAR -->
+            <!-- LIVE TICKER -->
             <div class="live-ticker-container" id="liveTicker">
                 <div class="ticker-track" id="tickerTrack"></div>
             </div>
@@ -74,6 +74,21 @@
             <button class="btn-secondary" onclick="location.reload()">Search Again</button>
         </div>
     </main>
+
+    <!-- STRICT WARNING MODAL -->
+    <div id="warningModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-icon">🛑</div>
+            <h2>STRICT WARNING & WELCOME</h2>
+            <div class="modal-body">
+                <p>Welcome to International-Matchmaking. We are a premium platform for serious individuals looking for marriage.</p>
+                <p class="warning-text">❌ <strong>NO UNDER 18:</strong> We strictly prohibit anyone under the age of 18. If you are under 18, you are not welcome here.</p>
+                <p class="warning-text">❌ <strong>NO JOKERS OR TIME WASTERS:</strong> This is not a game. If you have dishonest intentions or are just looking for casual chats, please leave immediately. We do not entertain time-wasters.</p>
+                <p class="success-text">✅ <strong>QUALIFIED MEMBERS ONLY:</strong> If you are a serious woman ready for true love and marriage, we welcome you.</p>
+            </div>
+            <button id="agreeBtn" class="btn-primary">I Agree & I Am Serious</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
