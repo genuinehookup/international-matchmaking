@@ -1,24 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('matchForm');
 
+    // --- LIVE TICKER DATA ---
+    const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
+    const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"];
+    const times = ["just now", "1 min ago", "3 mins ago", "5 mins ago", "12 mins ago", "30 mins ago", "1 hour ago", "2 hours ago"];
+
+    function getRandomName() {
+        const first = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const last = lastNames[Math.floor(Math.random() * lastNames.length)];
+        return `${first} ${last}`;
+    }
+
+    function getRandomTime() {
+        return times[Math.floor(Math.random() * times.length)];
+    }
+
+    function createTickerSlides() {
+        const track = document.getElementById('tickerTrack');
+        if (!track) return;
+
+        // We generate 15 "slides" of successful matches
+        let slidesHTML = '';
+        for (let i = 0; i < 15; i++) {
+            const man = getRandomName();
+            const woman = getRandomName().split(' ')[0]; // Just the first name for the woman
+            const time = getRandomTime();
+            
+            slidesHTML += `
+                <div class="ticker-item">
+                    <span class="dot">🟢</span>
+                    <span>${man} & ${woman} just connected</span>
+                    <span class="time">(${time})</span>
+                </div>
+            `;
+        }
+        
+        // Duplicate the slides so the scroll is seamless
+        track.innerHTML = slidesHTML + slidesHTML;
+    }
+
+    // --- FORM SUBMISSION ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        // 1. Get the user's name (We only need this to say "Hi [Name]")
         const userName = document.getElementById('userName').value;
 
         try {
-            // 2. Fetch the profiles from the JSON file
             const response = await fetch('profiles.json');
             
-            // If the file isn't found, throw an error
             if (!response.ok) {
                 throw new Error("Could not load profiles.json. Please check the file name.");
             }
 
             const allProfiles = await response.json();
 
-            // 3. NO RESTRICTIONS: We just pass ALL profiles to the display function
             displayMatches(userName, allProfiles);
 
         } catch (error) {
@@ -35,15 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultsContainer = document.getElementById('resultsContainer');
         resultsContainer.classList.remove('hidden');
 
-        // Build the HTML
-        resultsContainer.innerHTML = `
-            <h2>Hi ${userName}, here are your matches!</h2>
-            <p>Scroll down to see verified men who are active online right now.</p>
-            <div class="profile-grid" id="profileGrid"></div>
-            <button class="btn-secondary" onclick="location.reload()">Search Again</button>
-        `;
+        // Set the personalized greeting
+        document.getElementById('resultsGreeting').innerHTML = `Hi ${userName}, here are your matches!`;
+
+        // Initialize the live ticker slides
+        createTickerSlides();
 
         const grid = document.getElementById('profileGrid');
+        grid.innerHTML = ''; // Clear grid just in case
 
         // Loop through EVERY profile and create a card
         matches.forEach(profile => {
