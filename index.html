@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>International Matchmaking</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #120D0C; color: white; text-align: center; padding-top: 50px; font-family: sans-serif;">
-    <h1>Welcome to International Matchmaking</h1>
-    <p>Step 1 is complete! Our journey begins here.</p>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span>❤</span> INTERNATIONAL-MATCHMAKING
+        </div>
+        <div class="header-right">
+            <a href="#" class="link">How it Works</a>
+        </div>
+    </header>
+
+    <!-- MAIN DASHBOARD -->
+    <main>
+        <div class="hero-text" id="heroText">
+            <h1>Meet Singles Who Are <br><span>Serious About Connecting</span></h1>
+            <p>Tell us who you are to see who's ready to meet you.</p>
+        </div>
+
+        <!-- THE PROFILE FORM -->
+        <div class="match-form-container" id="formContainer">
+            <form id="matchForm">
+                <div class="input-group">
+                    <label>My Name</label>
+                    <input type="text" id="userName" placeholder="Enter your first name" required>
+                </div>
+                <div class="input-group">
+                    <label>I am a</label>
+                    <select id="userGender">
+                        <option value="Man">Man</option>
+                        <option value="Woman">Woman</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Seeking a</label>
+                    <select id="seekGender">
+                        <option value="Woman">Woman</option>
+                        <option value="Man">Man</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Age Range</label>
+                    <select id="ageRange">
+                        <option value="18-25">18 - 25</option>
+                        <option value="25-35" selected>25 - 35</option>
+                        <option value="35-45">35 - 45</option>
+                        <option value="45+">45+</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">See My Matches ➔</button>
+            </form>
+        </div>
+
+        <!-- RESULTS WILL APPEAR HERE -->
+        <div id="resultsContainer" class="results-section hidden"></div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
