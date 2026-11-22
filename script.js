@@ -4,54 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        // DEBUG: Check if the form values are being read
+        // 1. Get the user's name (We only need this to say "Hi [Name]")
         const userName = document.getElementById('userName').value;
-        const seekGender = document.getElementById('seekGender').value;
-
-        if (!userName) {
-            alert("DEBUG ERROR: Name is empty!");
-            return;
-        }
 
         try {
-            // DEBUG: Tell us what the browser is trying to fetch
-            console.log("Trying to fetch profiles.json...");
-            
+            // 2. Fetch the profiles from the JSON file
             const response = await fetch('profiles.json');
             
-            // DEBUG: Check if the file was actually found
+            // If the file isn't found, throw an error
             if (!response.ok) {
-                throw new Error(`Failed to load profiles.json. Status: ${response.status}. Make sure the file is named exactly profiles.json (all lowercase).`);
+                throw new Error("Could not load profiles.json. Please check the file name.");
             }
 
             const allProfiles = await response.json();
-            console.log("Profiles loaded successfully:", allProfiles);
 
-            // Filter based on who they are seeking
-            const matches = allProfiles.filter(profile => profile.gender === seekGender);
-            
-            // DEBUG: Check if the filter found anyone
-            if (matches.length === 0) {
-                alert("DEBUG ERROR: The file loaded, but no profiles matched your search. Check if 'gender' is spelled correctly in profiles.json.");
-                return;
-            }
-
-            displayMatches(userName, matches);
+            // 3. NO RESTRICTIONS: We just pass ALL profiles to the display function
+            displayMatches(userName, allProfiles);
 
         } catch (error) {
-            // THIS WILL SHOW THE EXACT ERROR ON SCREEN
-            console.error("THE ACTUAL ERROR IS:", error);
-            alert("WE FOUND THE ERROR:\n\n" + error.message + "\n\nPlease check your GitHub files.");
+            console.error("Error loading profiles:", error);
+            alert("Error: " + error.message);
         }
     });
 
     function displayMatches(userName, matches) {
+        // Hide the form and hero text
         document.getElementById('heroText').style.display = 'none';
         document.getElementById('formContainer').style.display = 'none';
 
         const resultsContainer = document.getElementById('resultsContainer');
         resultsContainer.classList.remove('hidden');
 
+        // Build the HTML
         resultsContainer.innerHTML = `
             <h2>Hi ${userName}, here are your matches!</h2>
             <p>Scroll down to see verified men who are active online right now.</p>
@@ -61,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const grid = document.getElementById('profileGrid');
 
+        // Loop through EVERY profile and create a card
         matches.forEach(profile => {
             const card = document.createElement('div');
             card.className = 'profile-card';
