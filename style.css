@@ -27,6 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     background-image: radial-gradient(circle at 50% 0%, #1A253A 0%, var(--bg-dark) 60%);
+    overflow-x: hidden;
 }
 
 /* --- HEADER & BIG LOVE LOGO --- */
@@ -164,7 +165,71 @@ main {
 }
 
 .results-section h2 { font-size: 2.5rem; margin-bottom: 10px; }
-.results-section p { color: var(--text-muted); margin-bottom: 40px; }
+.results-section > p { color: var(--text-muted); margin-bottom: 20px; }
+
+/* --- THE LIVE TICKER --- */
+.live-ticker-container {
+    width: 100%;
+    background: rgba(19, 30, 48, 0.8);
+    border: 1px solid var(--primary-blue);
+    border-radius: 12px;
+    padding: 15px 0;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+}
+
+/* Fades the edges so text appears out of thin air */
+.live-ticker-container::before,
+.live-ticker-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 2;
+}
+.live-ticker-container::before { left: 0; background: linear-gradient(to right, rgba(19, 30, 48, 1), transparent); }
+.live-ticker-container::after { right: 0; background: linear-gradient(to left, rgba(19, 30, 48, 1), transparent); }
+
+.ticker-track {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    width: max-content;
+    animation: scrollTicker 30s linear infinite;
+}
+
+.ticker-track:hover {
+    animation-play-state: paused; /* Pauses when mouse hovers over it */
+}
+
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ticker-item .dot {
+    color: var(--accent-green);
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px var(--accent-green);
+}
+
+.ticker-item .time {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
 
 /* --- PROFILE GRID --- */
 .profile-grid {
@@ -282,7 +347,7 @@ main {
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 25px;
-    margin-top: auto; /* Pushes button to bottom */
+    margin-top: auto;
 }
 
 .intentions-box h4 { color: var(--text-white); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
