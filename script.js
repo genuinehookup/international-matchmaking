@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('matchForm');
+    const warningModal = document.getElementById('warningModal');
+    const agreeBtn = document.getElementById('agreeBtn');
 
     // --- LIVE TICKER DATA ---
     const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
@@ -38,22 +40,33 @@ document.addEventListener('DOMContentLoaded', () => {
         track.innerHTML = slidesHTML + slidesHTML;
     }
 
-    // --- FORM SUBMISSION ---
+    // --- FORM SUBMISSION (Shows Warning FIRST) ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const userName = document.getElementById('userName').value;
 
         try {
+            // Fetch the data in the background while the warning is shown
             const response = await fetch('profiles.json');
             
             if (!response.ok) {
-                throw new Error("Could not load profiles.json. Please check the file name.");
+                throw new Error("Could not load profiles.json.");
             }
 
             const allProfiles = await response.json();
 
-            displayMatches(userName, allProfiles);
+            // 1. Show the Warning Modal FIRST
+            warningModal.classList.remove('hidden');
+
+            // 2. Wait for her to click "I Agree"
+            agreeBtn.onclick = function() {
+                // Hide the warning
+                warningModal.classList.add('hidden');
+                
+                // Now show the matches
+                displayMatches(userName, allProfiles);
+            };
 
         } catch (error) {
             console.error("Error loading profiles:", error);
@@ -62,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function displayMatches(userName, matches) {
+        // Hide the form and hero text
         document.getElementById('heroText').style.display = 'none';
         document.getElementById('formContainer').style.display = 'none';
 
@@ -79,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'profile-card';
             
-            // Build the HTML conditionally (only show About Me and Goal if they exist)
             card.innerHTML = `
                 <div class="card-top-bar">
                     <div class="profile-icon-wrapper">
