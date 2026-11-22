@@ -9,8 +9,26 @@
     "children": "No children",
     "religion": "Christian",
     "lookingFor": "I am looking for a serious, honest and loving woman aged 20–29 years who is ready for a committed relationship leading to marriage. I don't entertain games or dishonest intentions. Your religion and occupation do not matter to me. I respect all religions and welcome women from different backgrounds.",
+    "aboutMe": "", 
     "intentions": "I am ready to travel and meet your family. I believe in showing genuine love, respect, care and commitment. I want to build a happy family and a lasting marriage with the right woman. 💖 I AM HERE FOR TRUE LOVE, NOT GAMES. Serious women only! 💍",
+    "goal": "",
     "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
+    "status": "Active Now"
+  },
+  {
+    "id": 2,
+    "name": "Mark Greenwood",
+    "gender": "Man",
+    "age": 28,
+    "location": "New York, USA 🇺🇸",
+    "profession": "Accountant & Car Dealer 🚘",
+    "children": "No children",
+    "religion": "Christian",
+    "lookingFor": "I am looking for a serious, honest and loving woman who is ready for a genuine relationship leading to marriage. I am not interested in casual relationships or playing games. I want true love and a lifelong commitment.",
+    "aboutMe": "I am financially comfortable, enjoy exploring new places and love travelling. I am HIV-negative, according to my personal health information, and I value honesty and openness.",
+    "intentions": "Travelling to meet the right woman and her family is not a problem for me. I am ready to love, care for and support my future wife and family.",
+    "goal": "I want a peaceful, happy family built on love, trust, respect, loyalty and understanding. 💍 SERIOUS RELATIONSHIP ONLY – I AM LOOKING FOR TRUE LOVE AND MARRIAGE, NOT CASUAL DATING.",
+    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop",
     "status": "Active Now"
   }
 ]
