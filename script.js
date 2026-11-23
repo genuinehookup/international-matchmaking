@@ -43,57 +43,78 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUserName = "";
     let allProfilesData = [];
 
-    // --- TESTIMONIALS DATA (24 Mixed Stories) ---
-    const testimonialsData = [
-        { name: "Sarah M.", loc: "London, UK", text: "I was about to give up on love. The Director personally matched me with my beautiful husband. We are now married in London!", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "David K.", loc: "Toronto, Canada", text: "The VIP package was worth every penny. I met my wife 3 weeks later. The process was so safe and private.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
-        { name: "Amina Y.", loc: "Nairobi, Kenya", text: "Very genuine platform. No time wasters. The vetting process is real. Thank you Director!", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "James R.", loc: "Texas, USA", text: "I never thought I would find a woman who shares my values until I joined this platform.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
-        { name: "Grace O.", loc: "Lagos, Nigeria", text: "The Director guided me through the whole process. I am now engaged to a wonderful man in the USA.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "Mark T.", loc: "Sydney, Australia", text: "Professional service. The ladies are real and serious about marriage. Highly recommend.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
-        { name: "Elena V.", loc: "Moscow, Russia", text: "I found my soulmate here. The process was smooth and respectful.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "John D.", loc: "Florida, USA", text: "Best investment I ever made. Found a loving wife and built a beautiful family.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
-        { name: "Fatima A.", loc: "Dubai, UAE", text: "Respectful, private and very professional. I felt safe the entire time.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "Peter S.", loc: "Berlin, Germany", text: "The team is amazing. They really listen to what you want in a partner.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
-        { name: "Chloe B.", loc: "Paris, France", text: "I was nervous at first, but the Director was very kind and helpful. Now I am happily married.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "Michael O.", loc: "Chicago, USA", text: "No games, no fake profiles. Just genuine people looking for love. Thank you!", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
-        { name: "Zainab K.", loc: "Mombasa, Kenya", text: "My dream came true. I met a God-fearing man who loves me and my family.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "Robert L.", loc: "Houston, USA", text: "The VIP service is worth it. I got personal attention and met my match quickly.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
-        { name: "Blessing E.", loc: "Abuja, Nigeria", text: "I am so happy I took the chance. The Director is a true matchmaker.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "Thomas W.", loc: "Auckland, NZ", text: "Found a beautiful Kenyan woman. The cultural differences don't matter when there is love.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
-        { name: "Maria G.", loc: "Madrid, Spain", text: "Very professional and discreet. I felt respected and valued.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "Kevin P.", loc: "Los Angeles, USA", text: "I recommend this to any serious man looking for a real woman. 5 stars!", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
-        { name: "Joyce N.", loc: "Kampala, Uganda", text: "I was a single mother and thought no one would want me. Now I am happily engaged.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "Brian M.", loc: "Dublin, Ireland", text: "The Director is very honest. He told me exactly what to expect. Great experience.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
-        { name: "Ruth A.", loc: "Accra, Ghana", text: "Thank you for helping me find my best friend and lover. We are planning our wedding.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
-        { name: "Daniel C.", loc: "Vancouver, Canada", text: "It's hard to find genuine connections online, but this platform is different.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
-        { name: "Esther W.", loc: "Nairobi, Kenya", text: "The safest way to meet a foreign partner. I felt protected throughout.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
-        { name: "Paul H.", loc: "London, UK", text: "I found my African queen here. She is everything I prayed for.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" }
+    // --- MASSIVE TESTIMONIALS DATA (50+ Stories) ---
+    const names = ["Sarah", "David", "Amina", "James", "Grace", "Mark", "Elena", "John", "Fatima", "Peter", "Chloe", "Michael", "Zainab", "Robert", "Blessing", "Thomas", "Maria", "Kevin", "Joyce", "Brian", "Ruth", "Daniel", "Esther", "Paul", "Linda", "Samuel", "Fatou", "Victor", "Mercy", "George", "Aisha", "Simon", "Patience", "Emmanuel", "Joy", "Stephen", "Hannah", "Dennis", "Cynthia", "Francis", "Beatrice", "Charles", "Martha", "Isaac", "Lydia", "Patrick", "Rebecca", "Joseph", "Deborah", "Isaac", "Andrew", "Martha", "Philip", "Keziah", "Henry", "Naomi", "Martin", "Priscilla", "Timothy"];
+    const locations = ["London, UK", "Toronto, Canada", "Nairobi, Kenya", "Texas, USA", "Lagos, Nigeria", "Sydney, Australia", "Moscow, Russia", "Florida, USA", "Dubai, UAE", "Berlin, Germany", "Paris, France", "Chicago, USA", "Mombasa, Kenya", "Houston, USA", "Abuja, Nigeria", "Auckland, NZ", "Madrid, Spain", "Los Angeles, USA", "Kampala, Uganda", "Dublin, Ireland", "Accra, Ghana", "Vancouver, Canada", "Johannesburg, SA", "Atlanta, USA", "Kigali, Rwanda", "Perth, Australia"];
+    const texts = [
+        "I was about to give up on love. The Director personally matched me with my beautiful partner. We are now married!",
+        "The VIP package was worth every penny. I met my soulmate 3 weeks later. The process was so safe and private.",
+        "Very genuine platform. No time wasters. The vetting process is real. Thank you Director!",
+        "I never thought I would find a woman who shares my values until I joined this platform.",
+        "The Director guided me through the whole process. I am now engaged to a wonderful man.",
+        "Professional service. The people here are real and serious about marriage. Highly recommend.",
+        "I found my soulmate here. The process was smooth, respectful, and very fast.",
+        "Best investment I ever made. Found a loving wife and built a beautiful family.",
+        "Respectful, private and very professional. I felt safe the entire time.",
+        "The team is amazing. They really listen to what you want in a partner.",
+        "I was nervous at first, but the Director was very kind and helpful. Now I am happily married.",
+        "No games, no fake profiles. Just genuine people looking for love. Thank you!",
+        "My dream came true. I met a God-fearing man who loves me and my family.",
+        "The VIP service is worth it. I got personal attention and met my match quickly.",
+        "I am so happy I took the chance. The Director is a true matchmaker.",
+        "Found a beautiful woman. The cultural differences don't matter when there is love.",
+        "Very discreet and professional. I felt respected and valued.",
+        "I recommend this to any serious man looking for a real woman. 5 stars!",
+        "I was a single mother and thought no one would want me. Now I am happily engaged.",
+        "The Director is very honest. He told me exactly what to expect. Great experience.",
+        "Thank you for helping me find my best friend and lover. We are planning our wedding.",
+        "It's hard to find genuine connections online, but this platform is different.",
+        "The safest way to meet a foreign partner. I felt protected throughout.",
+        "I found my African queen here. She is everything I prayed for.",
+        "This platform changed my life. I finally found the love I deserved.",
+        "I love how the Director vets everyone. It makes the process so much easier."
     ];
 
-    function createTestimonialSlides() {
+    // Function to fetch unique photos and build the slider
+    async function loadTestimonials() {
         if (!testimonialTrack) return;
 
-        let slidesHTML = '';
-        // We duplicate the list to create a seamless infinite scroll effect
-        const fullList = [...testimonialsData, ...testimonialsData];
+        try {
+            // Fetch 50 unique profiles from a free API
+            const response = await fetch('https://randomuser.me/api/?results=50');
+            const data = await response.json();
+            
+            let slidesHTML = '';
 
-        fullList.forEach(t => {
-            slidesHTML += `
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="${t.img}" alt="${t.name}" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>${t.name} <span class="verified-badge-small">✔</span></h4>
-                            <p>${t.loc}</p>
+            data.results.forEach((user, index) => {
+                // Pick random name, location, and text
+                const name = names[Math.floor(Math.random() * names.length)] + " " + user.name.last.charAt(0) + ".";
+                const loc = locations[Math.floor(Math.random() * locations.length)];
+                const text = texts[Math.floor(Math.random() * texts.length)];
+                const photo = user.picture.medium; // Unique photo for every person
+
+                slidesHTML += `
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="${photo}" alt="${name}" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>${name} <span class="verified-badge-small">✔</span></h4>
+                                <p>${loc}</p>
+                            </div>
                         </div>
+                        <p class="testimonial-text">"${text}"</p>
                     </div>
-                    <p class="testimonial-text">"${t.text}"</p>
-                </div>
-            `;
-        });
+                `;
+            });
 
-        testimonialTrack.innerHTML = slidesHTML;
+            // Duplicate the slides to make the infinite scroll smooth
+            testimonialTrack.innerHTML = slidesHTML + slidesHTML;
+
+        } catch (error) {
+            console.error("Could not load testimonials", error);
+            // Fallback if API fails: just show text
+            testimonialTrack.innerHTML = "<p>Loading testimonials...</p>";
+        }
     }
 
     // --- LIVE TICKER DATA ---
@@ -185,9 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('heroText').style.display = 'none';
                 document.getElementById('formContainer').style.display = 'none';
                 
-                // 2. Show Testimonials FIRST
+                // 2. Show Testimonials FIRST and load the 50 unique people
                 testimonialsSection.classList.remove('hidden');
-                createTestimonialSlides();
+                loadTestimonials();
             };
         } catch (error) {
             console.error("Error:", error);
