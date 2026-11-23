@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
 
+    // TESTIMONIALS & RESULTS ELEMENTS
+    const testimonialsSection = document.getElementById('testimonialsSection');
+    const showMatchesBtn = document.getElementById('showMatchesBtn');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const testimonialTrack = document.getElementById('testimonialTrack');
+
     // CONNECT & PAYMENT MODAL ELEMENTS
     const connectModal = document.getElementById('connectModal');
     const connectModalTitle = document.getElementById('connectModalTitle');
@@ -34,6 +40,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const DIRECTOR_EMAIL = "genuinehookupconnection@gmail.com";
 
     let currentProfileName = "";
+    let currentUserName = "";
+    let allProfilesData = [];
+
+    // --- TESTIMONIALS DATA (24 Mixed Stories) ---
+    const testimonialsData = [
+        { name: "Sarah M.", loc: "London, UK", text: "I was about to give up on love. The Director personally matched me with my beautiful husband. We are now married in London!", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "David K.", loc: "Toronto, Canada", text: "The VIP package was worth every penny. I met my wife 3 weeks later. The process was so safe and private.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
+        { name: "Amina Y.", loc: "Nairobi, Kenya", text: "Very genuine platform. No time wasters. The vetting process is real. Thank you Director!", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "James R.", loc: "Texas, USA", text: "I never thought I would find a woman who shares my values until I joined this platform.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
+        { name: "Grace O.", loc: "Lagos, Nigeria", text: "The Director guided me through the whole process. I am now engaged to a wonderful man in the USA.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "Mark T.", loc: "Sydney, Australia", text: "Professional service. The ladies are real and serious about marriage. Highly recommend.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
+        { name: "Elena V.", loc: "Moscow, Russia", text: "I found my soulmate here. The process was smooth and respectful.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "John D.", loc: "Florida, USA", text: "Best investment I ever made. Found a loving wife and built a beautiful family.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
+        { name: "Fatima A.", loc: "Dubai, UAE", text: "Respectful, private and very professional. I felt safe the entire time.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "Peter S.", loc: "Berlin, Germany", text: "The team is amazing. They really listen to what you want in a partner.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
+        { name: "Chloe B.", loc: "Paris, France", text: "I was nervous at first, but the Director was very kind and helpful. Now I am happily married.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "Michael O.", loc: "Chicago, USA", text: "No games, no fake profiles. Just genuine people looking for love. Thank you!", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
+        { name: "Zainab K.", loc: "Mombasa, Kenya", text: "My dream came true. I met a God-fearing man who loves me and my family.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "Robert L.", loc: "Houston, USA", text: "The VIP service is worth it. I got personal attention and met my match quickly.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
+        { name: "Blessing E.", loc: "Abuja, Nigeria", text: "I am so happy I took the chance. The Director is a true matchmaker.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "Thomas W.", loc: "Auckland, NZ", text: "Found a beautiful Kenyan woman. The cultural differences don't matter when there is love.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
+        { name: "Maria G.", loc: "Madrid, Spain", text: "Very professional and discreet. I felt respected and valued.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "Kevin P.", loc: "Los Angeles, USA", text: "I recommend this to any serious man looking for a real woman. 5 stars!", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" },
+        { name: "Joyce N.", loc: "Kampala, Uganda", text: "I was a single mother and thought no one would want me. Now I am happily engaged.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "Brian M.", loc: "Dublin, Ireland", text: "The Director is very honest. He told me exactly what to expect. Great experience.", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" },
+        { name: "Ruth A.", loc: "Accra, Ghana", text: "Thank you for helping me find my best friend and lover. We are planning our wedding.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" },
+        { name: "Daniel C.", loc: "Vancouver, Canada", text: "It's hard to find genuine connections online, but this platform is different.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" },
+        { name: "Esther W.", loc: "Nairobi, Kenya", text: "The safest way to meet a foreign partner. I felt protected throughout.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&auto=format&fit=crop" },
+        { name: "Paul H.", loc: "London, UK", text: "I found my African queen here. She is everything I prayed for.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" }
+    ];
+
+    function createTestimonialSlides() {
+        if (!testimonialTrack) return;
+
+        let slidesHTML = '';
+        // We duplicate the list to create a seamless infinite scroll effect
+        const fullList = [...testimonialsData, ...testimonialsData];
+
+        fullList.forEach(t => {
+            slidesHTML += `
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="${t.img}" alt="${t.name}" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>${t.name} <span class="verified-badge-small">✔</span></h4>
+                            <p>${t.loc}</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"${t.text}"</p>
+                </div>
+            `;
+        });
+
+        testimonialTrack.innerHTML = slidesHTML;
+    }
 
     // --- LIVE TICKER DATA ---
     const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
@@ -85,18 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- FLOATING CONTACT BUTTON LOGIC ---
     const contactMessage = encodeURIComponent("Hello Director, I am on the International-Matchmaking website and I have a question.");
     
-    // Set the links
     floatWhatsapp.href = `https://wa.me/${DIRECTOR_WHATSAPP}?text=${contactMessage}`;
-    floatTelegram.href = `https://t.me/${DIRECTOR_TELEGRAM}`; // Telegram doesn't support pre-filled text via URL easily without a bot, so we just link to profile
+    floatTelegram.href = `https://t.me/${DIRECTOR_TELEGRAM}`; 
     floatEmail.href = `mailto:${DIRECTOR_EMAIL}?subject=Question about International-Matchmaking`;
 
-    // Toggle Popup
     floatingContactBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         contactPopup.classList.toggle('hidden');
     });
 
-    // Close popup when clicking outside
     document.addEventListener('click', (e) => {
         if (!contactPopup.classList.contains('hidden') && !contactPopup.contains(e.target) && e.target !== floatingContactBtn) {
             contactPopup.classList.add('hidden');
@@ -108,21 +166,28 @@ document.addEventListener('DOMContentLoaded', () => {
         proceedBtn.disabled = !this.checked;
     });
 
-    // --- MAIN FORM SUBMISSION ---
+    // --- MAIN FORM SUBMISSION (Shows Terms) ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
-        const userName = document.getElementById('userName').value;
+        currentUserName = document.getElementById('userName').value;
 
         try {
             const response = await fetch('profiles.json');
             if (!response.ok) throw new Error("Could not load profiles.json.");
-            const allProfiles = await response.json();
+            allProfilesData = await response.json();
 
             termsModal.classList.remove('hidden');
 
             proceedBtn.onclick = function() {
                 termsModal.classList.add('hidden');
-                displayMatches(userName, allProfiles);
+                
+                // 1. Hide the form
+                document.getElementById('heroText').style.display = 'none';
+                document.getElementById('formContainer').style.display = 'none';
+                
+                // 2. Show Testimonials FIRST
+                testimonialsSection.classList.remove('hidden');
+                createTestimonialSlides();
             };
         } catch (error) {
             console.error("Error:", error);
@@ -130,11 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function displayMatches(userName, matches) {
-        document.getElementById('heroText').style.display = 'none';
-        document.getElementById('formContainer').style.display = 'none';
+    // --- SHOW MATCHES BUTTON (After Testimonials) ---
+    showMatchesBtn.addEventListener('click', function() {
+        testimonialsSection.classList.add('hidden');
+        displayMatches(currentUserName, allProfilesData);
+    });
 
-        const resultsContainer = document.getElementById('resultsContainer');
+    function displayMatches(userName, matches) {
         resultsContainer.classList.remove('hidden');
         document.getElementById('resultsGreeting').innerHTML = `Hi ${userName}, here are your matches!`;
 
@@ -211,12 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentProfileName = profileName;
         connectModalTitle.innerHTML = `Request Connection with ${profileName}`;
         
-        // Reset steps
         connectFormStep.classList.remove('hidden');
         paymentStep.classList.add('hidden');
         connectSendStep.classList.add('hidden');
         
-        // Show modal
         connectModal.classList.remove('hidden');
     };
 
@@ -230,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Step 1 to Step 2: Move from Details to Payment Screen
     previewBtn.addEventListener('click', function() {
         if (c_about.value.trim() === "") {
             alert("Please write a short description about yourself.");
@@ -241,9 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         paymentStep.classList.remove('hidden');
     });
 
-    // Step 2 to Step 3: Confirm Package and generate links
     confirmPackageBtn.addEventListener('click', function() {
-        // Get the selected package
         const selectedPackage = document.querySelector('input[name="package"]:checked').value;
 
         const fullName = document.getElementById('c_fullName').value;
@@ -256,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const location = document.getElementById('c_location').value;
         const about = c_about.value;
 
-        // Format the message exactly as agreed (No "Aggrey", ends with her description)
         const message = 
 `Hello Director,
 
@@ -291,12 +352,10 @@ ${about}`;
             window.location.href = `mailto:${DIRECTOR_EMAIL}?subject=${subject}&body=${encodedMessage}`;
         };
 
-        // Show Step 3
         paymentStep.classList.add('hidden');
         connectSendStep.classList.remove('hidden');
     });
 
-    // Back button from Step 3 to Step 1
     backToFormBtn.addEventListener('click', function() {
         connectSendStep.classList.add('hidden');
         connectFormStep.classList.remove('hidden');
