@@ -60,7 +60,23 @@
             </form>
         </div>
 
-        <!-- RESULTS SECTION -->
+        <!-- TESTIMONIALS SECTION (Hidden initially, shown after Terms) -->
+        <div id="testimonialsSection" class="testimonials-section hidden">
+            <h2>Real Stories, Real Love</h2>
+            <p>Join over 1,200 couples who found their forever here.</p>
+
+            <!-- THE SCROLLING TESTIMONIAL SLIDER -->
+            <div class="testimonial-slider-container">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- JavaScript will inject the 20+ stories here -->
+                </div>
+            </div>
+
+            <!-- THE BUTTON TO REVEAL THE MEN -->
+            <button id="showMatchesBtn" class="btn-primary" style="margin-top: 30px; max-width: 400px;">See My Matches Now ➔</button>
+        </div>
+
+        <!-- RESULTS SECTION (Hidden until she clicks See My Matches Now) -->
         <div id="resultsContainer" class="results-section hidden">
             <h2 id="resultsGreeting"></h2>
             <p>Scroll down to see verified members who are active online right now.</p>
@@ -190,7 +206,7 @@
 
                 <button type="button" id="confirmPackageBtn" class="btn-primary" style="margin-top: 10px;">Confirm & Proceed</button>
 
-                <!-- REASONS FOR PAYMENT (At the bottom) -->
+                <!-- REASONS FOR PAYMENT -->
                 <div class="reasons-section">
                     <hr style="border-color: var(--border-color); margin: 25px 0;">
                     <p style="color: var(--text-white); font-weight: 700; margin-bottom: 15px; text-align: center;">Why is there a connection fee?</p>
