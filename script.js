@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
 
+    // LANDING PAGE START BUTTON
+    const startBtn = document.getElementById('startBtn');
+    const mainContent = document.getElementById('mainContent');
+
     // TESTIMONIALS & RESULTS ELEMENTS
     const testimonialsSection = document.getElementById('testimonialsSection');
     const showMatchesBtn = document.getElementById('showMatchesBtn');
@@ -46,6 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentProfileName = "";
     let currentUserName = "";
     let allProfilesData = [];
+
+    // --- START BUTTON SMOOTH SCROLL ---
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            if (mainContent) {
+                mainContent.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
 
     // --- LOCATION BUTTON SMOOTH SCROLL ---
     if (locationBtn) {
