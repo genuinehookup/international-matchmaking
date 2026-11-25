@@ -512,6 +512,117 @@ main {
 
 .btn-secondary:hover { background: var(--text-white); color: var(--bg-dark); }
 
+/* --- TRUST FOOTER --- */
+.site-footer {
+    background-color: #0d1624;
+    border-top: 1px solid var(--border-color);
+    padding: 50px 40px 20px 40px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col h4 {
+    color: var(--text-white);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Director Column */
+.director-col {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.director-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-blue);
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.director-col h3 {
+    color: var(--text-white);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.director-title {
+    color: var(--primary-blue) !important;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+}
+
+.director-bio {
+    font-size: 0.85rem !important;
+    color: var(--text-muted);
+}
+
+/* Lists */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.footer-list li {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.contact-list li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+.contact-list li a:hover {
+    color: var(--primary-blue);
+}
+
+.footer-trust-text {
+    font-size: 0.8rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
 /* --- MODALS (Terms & Connect & How It Works) --- */
 .modal-overlay {
     position: fixed;
@@ -543,7 +654,6 @@ main {
     border-top: 5px solid var(--accent-red);
 }
 
-/* Connect Modal specific styles */
 .connect-modal-content {
     max-width: 800px;
     border-top: 5px solid var(--primary-blue);
@@ -565,7 +675,6 @@ main {
     grid-column: span 2;
 }
 
-/* How It Works specific styles */
 .how-it-works-content {
     border-top: 5px solid var(--primary-blue);
     max-width: 700px;
@@ -616,7 +725,6 @@ main {
     line-height: 1.5;
 }
 
-/* --- CUSTOM SCROLLBAR & ANIMATIONS --- */
 .modal-content::-webkit-scrollbar { width: 8px; }
 .modal-content::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 10px; }
 .modal-content::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
@@ -664,7 +772,6 @@ main {
     color: var(--primary-blue);
 }
 
-/* Checkbox Area */
 .terms-action-area {
     display: flex;
     flex-direction: column;
@@ -731,7 +838,6 @@ main {
     line-height: 1.4;
 }
 
-/* --- PAYMENT PACKAGE STYLES --- */
 .package-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -807,7 +913,6 @@ main {
     line-height: 1.4;
 }
 
-/* --- REASONS FOR PAYMENT --- */
 .reasons-section {
     text-align: left;
 }
@@ -835,7 +940,6 @@ main {
     margin-bottom: 3px;
 }
 
-/* --- SEND OPTIONS BUTTONS --- */
 .send-options-grid {
     display: flex;
     flex-direction: column;
@@ -863,7 +967,6 @@ main {
 .telegram { background-color: #0088cc; color: white; }
 .email { background-color: #EA4335; color: white; }
 
-/* --- FLOATING CONTACT BUTTON --- */
 .floating-contact-wrapper {
     position: fixed;
     bottom: 30px;
@@ -943,7 +1046,6 @@ main {
 
 .contact-option:hover { opacity: 0.8; }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
@@ -962,4 +1064,9 @@ main {
     .floating-contact-btn { padding: 12px 20px; font-size: 0.9rem; }
     .contact-btn-text { display: none; }
     .whatsapp-icon { font-size: 1.8rem; margin: 0; }
+
+    /* Footer Mobile */
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .site-footer { padding: 30px 20px; }
+    .contact-list li { display: flex; justify-content: center; }
 }
