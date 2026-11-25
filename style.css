@@ -185,6 +185,7 @@ body {
     padding-top: 100px; 
 }
 
+/* The dark overlay to make text readable */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -218,6 +219,7 @@ body {
     max-width: 700px;
 }
 
+/* THE BIG RED START BUTTON */
 .btn-start-red {
     background-color: #FF0000; 
     color: var(--text-white);
@@ -245,7 +247,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 120px 20px 40px 20px; /* Padding top to clear the fixed header */
     text-align: center;
     background-color: var(--bg-dark);
     min-height: 80vh;
@@ -259,7 +261,7 @@ main {
 .match-form-container {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    padding: 25px; /* Reduced padding */
+    padding: 25px;
     border-radius: 15px;
     width: 100%;
     max-width: 850px;
@@ -272,7 +274,7 @@ main {
 .input-group { display: flex; flex-direction: column; text-align: left; flex: 1; min-width: 130px; }
 
 .input-group label {
-    font-size: 0.75rem; /* Smaller label */
+    font-size: 0.75rem;
     color: var(--text-muted);
     margin-bottom: 5px;
     font-weight: 600;
@@ -284,9 +286,9 @@ main {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
     color: var(--text-white);
-    padding: 10px 12px; /* Reduced padding */
+    padding: 10px 12px;
     border-radius: 8px;
-    font-size: 0.9rem; /* Smaller text */
+    font-size: 0.9rem;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
     width: 100%;
@@ -303,7 +305,7 @@ main {
     background-color: var(--primary-blue);
     color: var(--text-white);
     border: none;
-    padding: 12px 20px; /* Slightly smaller button */
+    padding: 12px 20px;
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 700;
@@ -510,7 +512,6 @@ main {
 /* --- PROFILE GRID (2 COLUMNS ON DESKTOP & 13PX TEXT) --- */
 .profile-grid {
     display: grid;
-    /* Forces 2 columns on desktop, 1 on mobile */
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); 
     gap: 20px;
     margin-bottom: 40px;
@@ -627,7 +628,7 @@ main {
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px;
-    font-size: 0.8rem; /* Smaller stats */
+    font-size: 0.8rem;
     color: var(--text-light);
     border: 1px solid var(--border-color);
 }
@@ -636,7 +637,7 @@ main {
 .bio-section h4 { color: var(--primary-blue); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px;}
 .bio-section p { 
     color: var(--text-light); 
-    font-size: 13px; /* EXACTLY 13PX AS REQUESTED */
+    font-size: 13px; 
     line-height: 1.4; 
     margin: 0; 
 }
@@ -653,7 +654,7 @@ main {
 .intentions-box h4 { color: var(--text-white); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; }
 .intentions-box p { 
     color: var(--text-light); 
-    font-size: 13px; /* EXACTLY 13PX AS REQUESTED */
+    font-size: 13px; 
     line-height: 1.4; 
     margin: 0; 
     font-style: italic; 
@@ -1242,7 +1243,6 @@ main {
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
     
-    /* Force 1 column on mobile for profiles */
     .profile-grid { grid-template-columns: 1fr; }
     
     .modal-content { padding: 20px; }
