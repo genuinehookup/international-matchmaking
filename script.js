@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const floatTelegram = document.getElementById('floatTelegram');
     const floatEmail = document.getElementById('floatEmail');
 
+    // LOCATION BUTTON ELEMENT
+    const locationBtn = document.getElementById('locationBtn');
+    const trustFooter = document.getElementById('trustFooter');
+
     // DIRECTOR'S CONTACT DETAILS
     const DIRECTOR_WHATSAPP = "447828793007"; 
     const DIRECTOR_TELEGRAM = "Contactadminaggrey"; 
@@ -43,7 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUserName = "";
     let allProfilesData = [];
 
-    // --- MASSIVE TESTIMONIALS DATA (50+ Stories) ---
+    // --- LOCATION BUTTON SMOOTH SCROLL ---
+    if (locationBtn) {
+        locationBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (trustFooter) {
+                trustFooter.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // --- TESTIMONIALS DATA ---
     const names = ["Sarah", "David", "Amina", "James", "Grace", "Mark", "Elena", "John", "Fatima", "Peter", "Chloe", "Michael", "Zainab", "Robert", "Blessing", "Thomas", "Maria", "Kevin", "Joyce", "Brian", "Ruth", "Daniel", "Esther", "Paul", "Linda", "Samuel", "Fatou", "Victor", "Mercy", "George", "Aisha", "Simon", "Patience", "Emmanuel", "Joy", "Stephen", "Hannah", "Dennis", "Cynthia", "Francis", "Beatrice", "Charles", "Martha", "Isaac", "Lydia", "Patrick", "Rebecca", "Joseph", "Deborah", "Isaac", "Andrew", "Martha", "Philip", "Keziah", "Henry", "Naomi", "Martin", "Priscilla", "Timothy"];
     const locations = ["London, UK", "Toronto, Canada", "Nairobi, Kenya", "Texas, USA", "Lagos, Nigeria", "Sydney, Australia", "Moscow, Russia", "Florida, USA", "Dubai, UAE", "Berlin, Germany", "Paris, France", "Chicago, USA", "Mombasa, Kenya", "Houston, USA", "Abuja, Nigeria", "Auckland, NZ", "Madrid, Spain", "Los Angeles, USA", "Kampala, Uganda", "Dublin, Ireland", "Accra, Ghana", "Vancouver, Canada", "Johannesburg, SA", "Atlanta, USA", "Kigali, Rwanda", "Perth, Australia"];
     const texts = [
@@ -75,23 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
         "I love how the Director vets everyone. It makes the process so much easier."
     ];
 
-    // Function to fetch unique photos and build the slider
     async function loadTestimonials() {
         if (!testimonialTrack) return;
 
         try {
-            // Fetch 50 unique profiles from a free API
             const response = await fetch('https://randomuser.me/api/?results=50');
             const data = await response.json();
             
             let slidesHTML = '';
 
-            data.results.forEach((user, index) => {
-                // Pick random name, location, and text
+            data.results.forEach((user) => {
                 const name = names[Math.floor(Math.random() * names.length)] + " " + user.name.last.charAt(0) + ".";
                 const loc = locations[Math.floor(Math.random() * locations.length)];
                 const text = texts[Math.floor(Math.random() * texts.length)];
-                const photo = user.picture.medium; // Unique photo for every person
+                const photo = user.picture.medium;
 
                 slidesHTML += `
                     <div class="testimonial-card">
@@ -107,12 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             });
 
-            // Duplicate the slides to make the infinite scroll smooth
             testimonialTrack.innerHTML = slidesHTML + slidesHTML;
 
         } catch (error) {
             console.error("Could not load testimonials", error);
-            // Fallback if API fails: just show text
             testimonialTrack.innerHTML = "<p>Loading testimonials...</p>";
         }
     }
@@ -187,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         proceedBtn.disabled = !this.checked;
     });
 
-    // --- MAIN FORM SUBMISSION (Shows Terms) ---
+    // --- MAIN FORM SUBMISSION ---
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         currentUserName = document.getElementById('userName').value;
@@ -202,11 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
             proceedBtn.onclick = function() {
                 termsModal.classList.add('hidden');
                 
-                // 1. Hide the form
                 document.getElementById('heroText').style.display = 'none';
                 document.getElementById('formContainer').style.display = 'none';
                 
-                // 2. Show Testimonials FIRST and load the 50 unique people
                 testimonialsSection.classList.remove('hidden');
                 loadTestimonials();
             };
@@ -216,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- SHOW MATCHES BUTTON (After Testimonials) ---
+    // --- SHOW MATCHES BUTTON ---
     showMatchesBtn.addEventListener('click', function() {
         testimonialsSection.classList.add('hidden');
         displayMatches(currentUserName, allProfilesData);
