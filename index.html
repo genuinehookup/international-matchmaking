@@ -8,21 +8,20 @@
 </head>
 <body>
 
-    <!-- FIXED HEADER (Floating Photo, Ticker, Links) -->
-    <div class="top-bar">
+    <!-- LANDING PAGE HEADER (Only shows on landing) -->
+    <div class="landing-header" id="landingHeader">
         <div class="floating-director-wrapper" onclick="document.getElementById('trustFooter').scrollIntoView({behavior: 'smooth'});">
             <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
             <div class="floating-active-dot"></div>
         </div>
         
         <div class="top-bar-links">
-            <a href="#trustFooter" class="link" id="locationBtn">📍 Location & Contact</a>
             <a href="#" class="link" id="howItWorksBtn">How it Works</a>
         </div>
     </div>
 
-    <!-- SLIDING TITLE TICKER -->
-    <div class="title-ticker-container">
+    <!-- SLIDING TITLE TICKER (Only shows on landing) -->
+    <div class="title-ticker-container" id="landingTicker">
         <div class="title-ticker-track">
             <div class="title-ticker-item">
                 <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
@@ -39,7 +38,7 @@
         </div>
     </div>
 
-    <!-- LANDING PAGE HERO (Stand-alone screen) -->
+    <!-- LANDING PAGE HERO -->
     <section class="landing-hero" id="landingHero">
         <div class="hero-overlay">
             <h1>Global Matchmaking Platform</h1>
@@ -50,6 +49,19 @@
 
     <!-- MAIN DASHBOARD (Hidden until START is clicked) -->
     <main id="mainContent" class="hidden">
+        
+        <!-- MAIN APP HEADER (Appears after START) -->
+        <div class="app-header" id="appHeader">
+            <div class="floating-director-wrapper" onclick="openFooterModal()">
+                <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
+                <div class="floating-active-dot"></div>
+            </div>
+            <div class="top-bar-links">
+                <a href="#" class="link" id="locationBtn" onclick="openFooterModal(); return false;">📍 Location & Contact</a>
+                <a href="#" class="link" id="howItWorksBtnApp">How it Works</a>
+            </div>
+        </div>
+
         <div class="hero-text" id="heroText">
             <h1>Meet Singles Who Are <br><span>Serious About Connecting</span></h1>
             <p>Tell us who you are to see who's ready to meet you.</p>
@@ -115,38 +127,37 @@
         </div>
     </main>
 
-    <!-- TRUST FOOTER -->
-    <footer class="site-footer hidden" id="trustFooter">
-        <div class="footer-grid">
-            <div class="footer-col director-col">
-                <img src="director.jpg" alt="Director Aggrey" class="director-photo" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
-                <h3>Director Aggrey</h3>
-                <p class="director-title">Founder & Head Matchmaker</p>
-                <p class="director-bio">I personally review every profile to ensure a safe, genuine, and respectful environment for everyone. Your journey to true love starts here.</p>
-            </div>
-            <div class="footer-col">
-                <h4>🛡️ Official Business Info</h4>
-                <ul class="footer-list">
-                    <li><strong>Business Name:</strong> International Matchmaking</li>
-                    <li><strong>Registration No:</strong> 670272529</li>
-                    <li><strong>Headquarters:</strong> London, United Kingdom 🇬🇧</li>
-                </ul>
-                <p class="footer-trust-text">We are a registered and verified matchmaking agency dedicated to genuine connections.</p>
-            </div>
-            <div class="footer-col">
-                <h4>📞 Direct Contact</h4>
-                <ul class="footer-list contact-list">
-                    <li><a href="https://wa.me/447828793007" target="_blank">🟢 WhatsApp: +44 7828 793007</a></li>
-                    <li><a href="mailto:genuinehookupconnection@gmail.com">✉️ Email: genuinehookupconnection@gmail.com</a></li>
-                    <li><a href="https://t.me/Contactadminaggrey" target="_blank">🔵 Telegram: @Contactadminaggrey</a></li>
-                </ul>
-                <p class="footer-trust-text">Our support team is available to answer your questions.</p>
+    <!-- FOOTER MODAL (Hidden by default) -->
+    <div id="footerModal" class="modal-overlay hidden">
+        <div class="modal-content footer-modal-content">
+            <span class="close-modal" onclick="closeFooterModal()">&times;</span>
+            
+            <div class="footer-grid">
+                <div class="footer-col director-col">
+                    <img src="director.jpg" alt="Director Aggrey" class="director-photo" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
+                    <h3>Director Aggrey</h3>
+                    <p class="director-title">Founder & Head Matchmaker</p>
+                    <p class="director-bio">I personally review every profile to ensure a safe, genuine, and respectful environment for everyone.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>🛡️ Official Business Info</h4>
+                    <ul class="footer-list">
+                        <li><strong>Business Name:</strong> International Matchmaking</li>
+                        <li><strong>Registration No:</strong> 670272529</li>
+                        <li><strong>Headquarters:</strong> London, United Kingdom 🇬🇧</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>📞 Direct Contact</h4>
+                    <ul class="footer-list contact-list">
+                        <li><a href="https://wa.me/447828793007" target="_blank">🟢 WhatsApp: +44 7828 793007</a></li>
+                        <li><a href="mailto:genuinehookupconnection@gmail.com">✉️ Email: genuinehookupconnection@gmail.com</a></li>
+                        <li><a href="https://t.me/Contactadminaggrey" target="_blank">🔵 Telegram: @Contactadminaggrey</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 International Matchmaking. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <!-- TERMS AND CONDITIONS MODAL -->
     <div id="termsModal" class="modal-overlay hidden">
@@ -327,8 +338,8 @@
         </div>
     </div>
 
-    <!-- FLOATING CONTACT BUTTON & POPUP -->
-    <div class="floating-contact-wrapper">
+    <!-- FLOATING CONTACT BUTTON & POPUP (Remains hidden until App starts) -->
+    <div class="floating-contact-wrapper hidden" id="floatingContactWrapper">
         <div id="contactPopup" class="contact-popup hidden">
             <p>Contact the Director</p>
             <a href="#" id="floatWhatsapp" class="contact-option">🟢 WhatsApp</a>
