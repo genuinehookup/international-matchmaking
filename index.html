@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- TOP BAR (Floating Photo & Links) -->
+    <!-- FIXED HEADER (Floating Photo, Ticker, Links) -->
     <div class="top-bar">
         <div class="floating-director-wrapper" onclick="document.getElementById('trustFooter').scrollIntoView({behavior: 'smooth'});">
             <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
@@ -39,8 +39,8 @@
         </div>
     </div>
 
-    <!-- NEW: LANDING HERO SECTION -->
-    <section class="landing-hero">
+    <!-- LANDING PAGE HERO (Stand-alone screen) -->
+    <section class="landing-hero" id="landingHero">
         <div class="hero-overlay">
             <h1>Global Matchmaking Platform</h1>
             <p>Connect with people from all over the world who truly get you.</p>
@@ -48,9 +48,9 @@
         </div>
     </section>
 
-    <!-- MAIN DASHBOARD -->
-    <main id="mainContent">
-        <div class="hero-text" id="heroText" style="display: none;">
+    <!-- MAIN DASHBOARD (Hidden until START is clicked) -->
+    <main id="mainContent" class="hidden">
+        <div class="hero-text" id="heroText">
             <h1>Meet Singles Who Are <br><span>Serious About Connecting</span></h1>
             <p>Tell us who you are to see who's ready to meet you.</p>
         </div>
@@ -116,7 +116,7 @@
     </main>
 
     <!-- TRUST FOOTER -->
-    <footer class="site-footer" id="trustFooter">
+    <footer class="site-footer hidden" id="trustFooter">
         <div class="footer-grid">
             <div class="footer-col director-col">
                 <img src="director.jpg" alt="Director Aggrey" class="director-photo" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
