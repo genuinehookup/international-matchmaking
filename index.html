@@ -39,9 +39,18 @@
         </div>
     </div>
 
+    <!-- NEW: LANDING HERO SECTION -->
+    <section class="landing-hero">
+        <div class="hero-overlay">
+            <h1>Global Matchmaking Platform</h1>
+            <p>Connect with people from all over the world who truly get you.</p>
+            <button id="startBtn" class="btn-start-red">START ➔</button>
+        </div>
+    </section>
+
     <!-- MAIN DASHBOARD -->
-    <main>
-        <div class="hero-text" id="heroText">
+    <main id="mainContent">
+        <div class="hero-text" id="heroText" style="display: none;">
             <h1>Meet Singles Who Are <br><span>Serious About Connecting</span></h1>
             <p>Tell us who you are to see who's ready to meet you.</p>
         </div>
@@ -109,15 +118,12 @@
     <!-- TRUST FOOTER -->
     <footer class="site-footer" id="trustFooter">
         <div class="footer-grid">
-            <!-- Column 1: Director Profile -->
             <div class="footer-col director-col">
                 <img src="director.jpg" alt="Director Aggrey" class="director-photo" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
                 <h3>Director Aggrey</h3>
                 <p class="director-title">Founder & Head Matchmaker</p>
                 <p class="director-bio">I personally review every profile to ensure a safe, genuine, and respectful environment for everyone. Your journey to true love starts here.</p>
             </div>
-
-            <!-- Column 2: Official Business Info -->
             <div class="footer-col">
                 <h4>🛡️ Official Business Info</h4>
                 <ul class="footer-list">
@@ -127,8 +133,6 @@
                 </ul>
                 <p class="footer-trust-text">We are a registered and verified matchmaking agency dedicated to genuine connections.</p>
             </div>
-
-            <!-- Column 3: Direct Contact -->
             <div class="footer-col">
                 <h4>📞 Direct Contact</h4>
                 <ul class="footer-list contact-list">
