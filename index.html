@@ -8,17 +8,36 @@
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo-container">
-            <div class="love-frame">❤</div>
-            <div class="logo-text">International-Matchmaking</div>
+    <!-- TOP BAR (Floating Photo & Links) -->
+    <div class="top-bar">
+        <div class="floating-director-wrapper" onclick="document.getElementById('trustFooter').scrollIntoView({behavior: 'smooth'});">
+            <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
+            <div class="floating-active-dot"></div>
         </div>
-        <div class="header-right">
+        
+        <div class="top-bar-links">
             <a href="#trustFooter" class="link" id="locationBtn">📍 Location & Contact</a>
             <a href="#" class="link" id="howItWorksBtn">How it Works</a>
         </div>
-    </header>
+    </div>
+
+    <!-- SLIDING TITLE TICKER -->
+    <div class="title-ticker-container">
+        <div class="title-ticker-track">
+            <div class="title-ticker-item">
+                <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
+            </div>
+            <div class="title-ticker-item">
+                <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
+            </div>
+            <div class="title-ticker-item">
+                <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
+            </div>
+            <div class="title-ticker-item">
+                <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN DASHBOARD -->
     <main>
