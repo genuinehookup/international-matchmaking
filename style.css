@@ -28,6 +28,7 @@ body {
     flex-direction: column;
     background-image: radial-gradient(circle at 50% 0%, #1A253A 0%, var(--bg-dark) 60%);
     overflow-x: hidden;
+    scroll-behavior: smooth; /* Enables smooth scrolling to the footer */
 }
 
 /* --- HEADER & BIG LOVE LOGO --- */
@@ -62,13 +63,22 @@ header {
     text-transform: uppercase;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Space between the two links */
+}
+
 .header-right .link {
-    color: var(--text-muted);
+    color: var(--text-light);
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.3s;
     font-weight: 600;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .header-right .link:hover { color: var(--primary-blue); }
@@ -543,7 +553,6 @@ main {
     line-height: 1.6;
 }
 
-/* Director Column */
 .director-col {
     text-align: center;
     display: flex;
@@ -580,7 +589,6 @@ main {
     color: var(--text-muted);
 }
 
-/* Lists */
 .footer-list {
     list-style: none;
     padding: 0;
@@ -623,7 +631,7 @@ main {
     font-size: 0.8rem;
 }
 
-/* --- MODALS (Terms & Connect & How It Works) --- */
+/* --- MODALS --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1064,6 +1072,11 @@ main {
     .floating-contact-btn { padding: 12px 20px; font-size: 0.9rem; }
     .contact-btn-text { display: none; }
     .whatsapp-icon { font-size: 1.8rem; margin: 0; }
+
+    /* Header Mobile */
+    header { flex-direction: column; gap: 15px; padding: 15px; }
+    .header-right { gap: 15px; }
+    .header-right .link { font-size: 0.85rem; }
 
     /* Footer Mobile */
     .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
