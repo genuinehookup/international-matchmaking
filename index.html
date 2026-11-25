@@ -8,20 +8,21 @@
 </head>
 <body>
 
-    <!-- LANDING PAGE HEADER (Only shows on landing) -->
-    <div class="landing-header" id="landingHeader">
-        <div class="floating-director-wrapper" onclick="document.getElementById('trustFooter').scrollIntoView({behavior: 'smooth'});">
+    <!-- FIXED HEADER (Floating Photo, Ticker, Links) -->
+    <div class="top-bar">
+        <div class="floating-director-wrapper" onclick="document.getElementById('locationBtn').click();">
             <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
             <div class="floating-active-dot"></div>
         </div>
         
         <div class="top-bar-links">
+            <a href="#" class="link hidden" id="locationBtn">📍 Location & Contact</a>
             <a href="#" class="link" id="howItWorksBtn">How it Works</a>
         </div>
     </div>
 
-    <!-- SLIDING TITLE TICKER (Only shows on landing) -->
-    <div class="title-ticker-container" id="landingTicker">
+    <!-- SLIDING TITLE TICKER (Only on Landing Page) -->
+    <div class="title-ticker-container" id="titleTicker">
         <div class="title-ticker-track">
             <div class="title-ticker-item">
                 <div class="love-frame-small">❤</div> INTERNATIONAL-MATCHMAKING
@@ -38,7 +39,7 @@
         </div>
     </div>
 
-    <!-- LANDING PAGE HERO -->
+    <!-- LANDING PAGE HERO (Stand-alone screen) -->
     <section class="landing-hero" id="landingHero">
         <div class="hero-overlay">
             <h1>Global Matchmaking Platform</h1>
@@ -49,19 +50,6 @@
 
     <!-- MAIN DASHBOARD (Hidden until START is clicked) -->
     <main id="mainContent" class="hidden">
-        
-        <!-- MAIN APP HEADER (Appears after START) -->
-        <div class="app-header" id="appHeader">
-            <div class="floating-director-wrapper" onclick="openFooterModal()">
-                <img src="director.jpg" alt="Director Aggrey" class="floating-director-img" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
-                <div class="floating-active-dot"></div>
-            </div>
-            <div class="top-bar-links">
-                <a href="#" class="link" id="locationBtn" onclick="openFooterModal(); return false;">📍 Location & Contact</a>
-                <a href="#" class="link" id="howItWorksBtnApp">How it Works</a>
-            </div>
-        </div>
-
         <div class="hero-text" id="heroText">
             <h1>Meet Singles Who Are <br><span>Serious About Connecting</span></h1>
             <p>Tell us who you are to see who's ready to meet you.</p>
@@ -127,35 +115,31 @@
         </div>
     </main>
 
-    <!-- FOOTER MODAL (Hidden by default) -->
-    <div id="footerModal" class="modal-overlay hidden">
-        <div class="modal-content footer-modal-content">
-            <span class="close-modal" onclick="closeFooterModal()">&times;</span>
+    <!-- LOCATION & CONTACT MODAL (Footer Popup) -->
+    <div id="locationModal" class="modal-overlay hidden">
+        <div class="modal-content location-modal-content">
+            <div class="modal-icon">📍</div>
+            <h2>Location & Contact</h2>
             
-            <div class="footer-grid">
-                <div class="footer-col director-col">
-                    <img src="director.jpg" alt="Director Aggrey" class="director-photo" onerror="this.src='https://ui-avatars.com/api/?name=Director+Aggrey&background=2563EB&color=fff&size=150'">
-                    <h3>Director Aggrey</h3>
-                    <p class="director-title">Founder & Head Matchmaker</p>
-                    <p class="director-bio">I personally review every profile to ensure a safe, genuine, and respectful environment for everyone.</p>
-                </div>
+            <div class="footer-grid" style="grid-template-columns: 1fr; text-align: center;">
                 <div class="footer-col">
                     <h4>🛡️ Official Business Info</h4>
-                    <ul class="footer-list">
+                    <ul class="footer-list" style="font-size: 1.1rem; margin-top: 15px;">
                         <li><strong>Business Name:</strong> International Matchmaking</li>
                         <li><strong>Registration No:</strong> 670272529</li>
                         <li><strong>Headquarters:</strong> London, United Kingdom 🇬🇧</li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" style="margin-top: 20px;">
                     <h4>📞 Direct Contact</h4>
-                    <ul class="footer-list contact-list">
+                    <ul class="footer-list contact-list" style="font-size: 1.1rem; margin-top: 15px;">
                         <li><a href="https://wa.me/447828793007" target="_blank">🟢 WhatsApp: +44 7828 793007</a></li>
                         <li><a href="mailto:genuinehookupconnection@gmail.com">✉️ Email: genuinehookupconnection@gmail.com</a></li>
                         <li><a href="https://t.me/Contactadminaggrey" target="_blank">🔵 Telegram: @Contactadminaggrey</a></li>
                     </ul>
                 </div>
             </div>
+            <button id="closeLocationBtn" class="btn-primary" style="margin-top: 30px;">Close</button>
         </div>
     </div>
 
@@ -338,8 +322,8 @@
         </div>
     </div>
 
-    <!-- FLOATING CONTACT BUTTON & POPUP (Remains hidden until App starts) -->
-    <div class="floating-contact-wrapper hidden" id="floatingContactWrapper">
+    <!-- FLOATING CONTACT BUTTON & POPUP -->
+    <div class="floating-contact-wrapper">
         <div id="contactPopup" class="contact-popup hidden">
             <p>Contact the Director</p>
             <a href="#" id="floatWhatsapp" class="contact-option">🟢 WhatsApp</a>
