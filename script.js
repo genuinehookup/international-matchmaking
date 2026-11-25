@@ -4,12 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
 
-    // LANDING PAGE START BUTTON
+    // LANDING PAGE & HEADER ELEMENTS
     const startBtn = document.getElementById('startBtn');
     const landingHero = document.getElementById('landingHero');
     const mainContent = document.getElementById('mainContent');
-    const trustFooter = document.getElementById('trustFooter');
+    const titleTicker = document.getElementById('titleTicker');
+    const locationBtn = document.getElementById('locationBtn');
 
+    // MODALS
+    const locationModal = document.getElementById('locationModal');
+    const closeLocationBtn = document.getElementById('closeLocationBtn');
+    
     // TESTIMONIALS & RESULTS ELEMENTS
     const testimonialsSection = document.getElementById('testimonialsSection');
     const showMatchesBtn = document.getElementById('showMatchesBtn');
@@ -40,9 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const floatTelegram = document.getElementById('floatTelegram');
     const floatEmail = document.getElementById('floatEmail');
 
-    // LOCATION BUTTON ELEMENT
-    const locationBtn = document.getElementById('locationBtn');
-
     // DIRECTOR'S CONTACT DETAILS
     const DIRECTOR_WHATSAPP = "447828793007"; 
     const DIRECTOR_TELEGRAM = "Contactadminaggrey"; 
@@ -52,23 +54,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUserName = "";
     let allProfilesData = [];
 
-    // --- START BUTTON LOGIC (Hide Landing, Show Main) ---
+    // --- START BUTTON LOGIC ---
     if (startBtn) {
         startBtn.addEventListener('click', () => {
+            // 1. Hide landing page
             landingHero.classList.add('hidden');
+            
+            // 2. Hide the sliding ticker forever
+            if (titleTicker) titleTicker.classList.add('hidden');
+            
+            // 3. Show main content
             mainContent.classList.remove('hidden');
-            trustFooter.classList.remove('hidden');
-            window.scrollTo(0, 0); // Scroll to top of the new content
+            
+            // 4. Show the Location link in the header
+            if (locationBtn) locationBtn.classList.remove('hidden');
+            
+            // 5. Scroll to top
+            window.scrollTo(0, 0); 
         });
     }
 
-    // --- LOCATION BUTTON SMOOTH SCROLL ---
+    // --- LOCATION MODAL LOGIC ---
     if (locationBtn) {
         locationBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (trustFooter) {
-                trustFooter.scrollIntoView({ behavior: 'smooth' });
-            }
+            locationModal.classList.remove('hidden');
+        });
+    }
+
+    if (closeLocationBtn) {
+        closeLocationBtn.addEventListener('click', () => {
+            locationModal.classList.add('hidden');
         });
     }
 
