@@ -26,10 +26,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: radial-gradient(circle at 50% 0%, #1A253A 0%, var(--bg-dark) 60%);
     overflow-x: hidden;
     scroll-behavior: smooth;
-    padding-top: 120px; /* Space for the floating photo */
 }
 
 /* --- TOP BAR (Floating Photo & Links) --- */
@@ -45,7 +43,7 @@ body {
     padding: 0 40px;
     z-index: 1001;
     background: linear-gradient(to bottom, rgba(11, 19, 32, 0.95), transparent);
-    pointer-events: none; /* Allows clicking through the empty space */
+    pointer-events: none;
 }
 
 .floating-director-wrapper {
@@ -56,7 +54,6 @@ body {
     cursor: pointer;
     pointer-events: auto;
     animation: floatAnimation 4s ease-in-out infinite;
-    /* Position slightly lower so it looks like it's jumping out of the bar */
     margin-top: 20px; 
 }
 
@@ -122,7 +119,7 @@ body {
 /* --- SLIDING TITLE TICKER --- */
 .title-ticker-container {
     position: fixed;
-    top: 100px; /* Right below the top bar */
+    top: 100px;
     left: 0;
     width: 100%;
     background: var(--bg-card);
@@ -174,6 +171,76 @@ body {
     border: 1px solid #FB7185;
 }
 
+/* --- NEW: LANDING HERO SECTION --- */
+.landing-hero {
+    height: 100vh;
+    width: 100%;
+    /* The mixed-race couple image from Unsplash */
+    background-image: url('https://images.unsplash.com/photo-1517431160692-6b9a26e6990e?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* Space for the top bar */
+}
+
+/* The dark overlay to make text readable */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(11, 19, 32, 0.6), rgba(11, 19, 32, 0.95));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-overlay h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: 15px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    max-width: 900px;
+    line-height: 1.2;
+}
+
+.hero-overlay p {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    max-width: 700px;
+}
+
+/* THE BIG RED START BUTTON */
+.btn-start-red {
+    background-color: #FF0000; /* Exact red from your screenshot */
+    color: var(--text-white);
+    border: none;
+    padding: 18px 60px;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+.btn-start-red:hover {
+    background-color: #CC0000;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.6);
+}
+
 /* --- MAIN SECTION --- */
 main {
     flex: 1;
@@ -183,6 +250,8 @@ main {
     justify-content: center;
     padding: 60px 20px;
     text-align: center;
+    background-color: var(--bg-dark);
+    min-height: 80vh;
 }
 
 .hero-text h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 15px; font-weight: 700; }
@@ -734,7 +803,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000; /* Above the header */
+    z-index: 2000;
     padding: 20px;
 }
 
@@ -1146,8 +1215,6 @@ main {
 .contact-option:hover { opacity: 0.8; }
 
 @media (max-width: 768px) {
-    body { padding-top: 130px; }
-    
     .top-bar { padding: 0 15px; height: 90px; }
     .floating-director-wrapper { width: 80px; height: 80px; margin-top: 15px; }
     .top-bar-links { gap: 10px; flex-direction: column; }
@@ -1155,6 +1222,11 @@ main {
     
     .title-ticker-container { top: 90px; padding: 8px 0; }
     .title-ticker-item { font-size: 1rem; }
+
+    .landing-hero { padding-top: 90px; }
+    .hero-overlay h1 { font-size: 2.2rem; }
+    .hero-overlay p { font-size: 1rem; }
+    .btn-start-red { padding: 15px 40px; font-size: 1.2rem; }
 
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
