@@ -185,7 +185,6 @@ body {
     padding-top: 100px; 
 }
 
-/* The dark overlay to make text readable */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -219,7 +218,6 @@ body {
     max-width: 700px;
 }
 
-/* THE BIG RED START BUTTON */
 .btn-start-red {
     background-color: #FF0000; 
     color: var(--text-white);
@@ -247,7 +245,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 120px 20px 40px 20px; /* Padding top to clear the fixed header */
+    padding: 120px 20px 40px 20px; 
     text-align: center;
     background-color: var(--bg-dark);
     min-height: 80vh;
@@ -330,7 +328,7 @@ main {
     box-shadow: none;
 }
 
-/* --- TESTIMONIALS SECTION (UNTOUCHED) --- */
+/* --- TESTIMONIALS SECTION --- */
 .testimonials-section {
     width: 100%;
     max-width: 1100px;
@@ -692,21 +690,15 @@ main {
 
 .btn-secondary:hover { background: var(--text-white); color: var(--bg-dark); }
 
-/* --- TRUST FOOTER --- */
-.site-footer {
-    background-color: #0d1624;
-    border-top: 1px solid var(--border-color);
-    padding: 40px 30px 20px 30px;
-    margin-top: 40px;
-    width: 100%;
+/* --- LOCATION MODAL (Footer Popup) --- */
+.location-modal-content {
+    border-top: 4px solid var(--primary-blue);
+    max-width: 500px;
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+.location-modal-content h2 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
 }
 
 .footer-col h4 {
@@ -717,48 +709,6 @@ main {
     letter-spacing: 0.5px;
 }
 
-.footer-col p {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    line-height: 1.5;
-}
-
-.director-col {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.director-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--primary-blue);
-    margin-bottom: 10px;
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-}
-
-.director-col h3 {
-    color: var(--text-white);
-    margin-bottom: 3px;
-    font-size: 1.1rem;
-}
-
-.director-title {
-    color: var(--primary-blue) !important;
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 0.75rem !important;
-    text-transform: uppercase;
-}
-
-.director-bio {
-    font-size: 0.8rem !important;
-    color: var(--text-muted);
-}
-
 .footer-list {
     list-style: none;
     padding: 0;
@@ -767,8 +717,8 @@ main {
 
 .footer-list li {
     color: var(--text-light);
-    font-size: 0.8rem;
-    margin-bottom: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
 }
 
 .contact-list li a {
@@ -776,32 +726,14 @@ main {
     text-decoration: none;
     transition: color 0.3s;
     display: inline-block;
+    font-size: 1rem;
 }
 
 .contact-list li a:hover {
     color: var(--primary-blue);
 }
 
-.footer-trust-text {
-    font-size: 0.75rem !important;
-    color: var(--text-muted) !important;
-    margin-top: 8px;
-    font-style: italic;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: 15px;
-    margin-top: 30px;
-}
-
-.footer-bottom p {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-}
-
-/* --- MODALS & PAYMENT SCREEN (VERY SMALL) --- */
+/* --- MODALS --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1257,8 +1189,4 @@ main {
     .floating-contact-btn { padding: 10px 15px; font-size: 0.8rem; }
     .contact-btn-text { display: none; }
     .whatsapp-icon { font-size: 1.5rem; margin: 0; }
-
-    .footer-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-    .site-footer { padding: 25px 15px; }
-    .contact-list li { display: flex; justify-content: center; }
 }
