@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // LANDING PAGE START BUTTON
     const startBtn = document.getElementById('startBtn');
+    const landingHero = document.getElementById('landingHero');
     const mainContent = document.getElementById('mainContent');
+    const trustFooter = document.getElementById('trustFooter');
 
     // TESTIMONIALS & RESULTS ELEMENTS
     const testimonialsSection = document.getElementById('testimonialsSection');
@@ -40,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // LOCATION BUTTON ELEMENT
     const locationBtn = document.getElementById('locationBtn');
-    const trustFooter = document.getElementById('trustFooter');
 
     // DIRECTOR'S CONTACT DETAILS
     const DIRECTOR_WHATSAPP = "447828793007"; 
@@ -51,12 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUserName = "";
     let allProfilesData = [];
 
-    // --- START BUTTON SMOOTH SCROLL ---
+    // --- START BUTTON LOGIC (Hide Landing, Show Main) ---
     if (startBtn) {
         startBtn.addEventListener('click', () => {
-            if (mainContent) {
-                mainContent.scrollIntoView({ behavior: 'smooth' });
-            }
+            landingHero.classList.add('hidden');
+            mainContent.classList.remove('hidden');
+            trustFooter.classList.remove('hidden');
+            window.scrollTo(0, 0); // Scroll to top of the new content
         });
     }
 
