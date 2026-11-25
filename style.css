@@ -28,60 +28,151 @@ body {
     flex-direction: column;
     background-image: radial-gradient(circle at 50% 0%, #1A253A 0%, var(--bg-dark) 60%);
     overflow-x: hidden;
-    scroll-behavior: smooth; /* Enables smooth scrolling to the footer */
+    scroll-behavior: smooth;
+    padding-top: 120px; /* Space for the floating photo */
 }
 
-/* --- HEADER & BIG LOVE LOGO --- */
-header {
+/* --- TOP BAR (Floating Photo & Links) --- */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    border-bottom: 1px solid var(--border-color);
-    background-color: rgba(11, 19, 32, 0.8);
-    backdrop-filter: blur(10px);
+    padding: 0 40px;
+    z-index: 1001;
+    background: linear-gradient(to bottom, rgba(11, 19, 32, 0.95), transparent);
+    pointer-events: none; /* Allows clicking through the empty space */
 }
 
-.logo-container { display: flex; align-items: center; gap: 15px; }
+.floating-director-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: floatAnimation 4s ease-in-out infinite;
+    /* Position slightly lower so it looks like it's jumping out of the bar */
+    margin-top: 20px; 
+}
 
-.love-frame {
-    background: linear-gradient(135deg, var(--accent-red), #BE123C);
-    padding: 12px 15px;
-    border-radius: 15px;
-    font-size: 2rem;
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating-director-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+    background-color: var(--bg-dark);
+}
+
+.floating-active-dot {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    border: 3px solid var(--bg-dark);
+    box-shadow: 0 0 10px var(--accent-green);
+}
+
+.top-bar-links {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.5);
-    border: 2px solid #FB7185;
+    gap: 25px;
+    pointer-events: auto;
+    margin-top: 10px;
 }
 
-.logo-text {
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 25px; /* Space between the two links */
-}
-
-.header-right .link {
+.top-bar-links .link {
     color: var(--text-light);
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.3s;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
+    background: rgba(19, 30, 48, 0.8);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.header-right .link:hover { color: var(--primary-blue); }
+.top-bar-links .link:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: var(--text-white);
+    transform: translateY(-2px);
+}
+
+/* --- SLIDING TITLE TICKER --- */
+.title-ticker-container {
+    position: fixed;
+    top: 100px; /* Right below the top bar */
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.title-ticker-track {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    width: max-content;
+    animation: slideTitle 20s linear infinite;
+}
+
+.title-ticker-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes slideTitle {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.title-ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-white);
+    text-transform: uppercase;
+}
+
+.love-frame-small {
+    background: linear-gradient(135deg, var(--accent-red), #BE123C);
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(225, 29, 72, 0.5);
+    border: 1px solid #FB7185;
+}
 
 /* --- MAIN SECTION --- */
 main {
@@ -643,7 +734,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000; /* Above the header */
     padding: 20px;
 }
 
@@ -1055,10 +1146,18 @@ main {
 .contact-option:hover { opacity: 0.8; }
 
 @media (max-width: 768px) {
+    body { padding-top: 130px; }
+    
+    .top-bar { padding: 0 15px; height: 90px; }
+    .floating-director-wrapper { width: 80px; height: 80px; margin-top: 15px; }
+    .top-bar-links { gap: 10px; flex-direction: column; }
+    .top-bar-links .link { padding: 6px 12px; font-size: 0.8rem; }
+    
+    .title-ticker-container { top: 90px; padding: 8px 0; }
+    .title-ticker-item { font-size: 1rem; }
+
     .hero-text h1 { font-size: 2rem; }
     #matchForm { flex-direction: column; align-items: stretch; }
-    .logo-text { font-size: 1rem; }
-    .love-frame { font-size: 1.5rem; padding: 8px 10px; }
     .profile-grid { grid-template-columns: 1fr; }
     .modal-content { padding: 25px; }
     .modal-content h2 { font-size: 1.4rem; }
@@ -1073,12 +1172,6 @@ main {
     .contact-btn-text { display: none; }
     .whatsapp-icon { font-size: 1.8rem; margin: 0; }
 
-    /* Header Mobile */
-    header { flex-direction: column; gap: 15px; padding: 15px; }
-    .header-right { gap: 15px; }
-    .header-right .link { font-size: 0.85rem; }
-
-    /* Footer Mobile */
     .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
     .site-footer { padding: 30px 20px; }
     .contact-list li { display: flex; justify-content: center; }
