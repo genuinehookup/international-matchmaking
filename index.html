@@ -17,6 +17,7 @@
         
         <div class="top-bar-links">
             <a href="#" class="link hidden" id="locationBtn">📍 Location & Contact</a>
+            <a href="#" class="link" id="faqBtn">❓ FAQs</a>
             <a href="#" class="link" id="howItWorksBtn">How it Works</a>
         </div>
     </div>
@@ -140,6 +141,62 @@
                 </div>
             </div>
             <button id="closeLocationBtn" class="btn-primary" style="margin-top: 30px;">Close</button>
+        </div>
+    </div>
+
+    <!-- FAQ MODAL -->
+    <div id="faqModal" class="modal-overlay hidden">
+        <div class="modal-content faq-modal-content">
+            <div class="modal-icon" style="color: var(--primary-blue);">❓</div>
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">1. Is this platform safe and genuine?</button>
+                    <div class="faq-answer"><p>Yes. We are a registered matchmaking agency based in London, UK (Reg No: 670272529). Every profile is manually vetted by our management team to ensure there are no scammers or time-wasters.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">2. How much does it cost to connect?</button>
+                    <div class="faq-answer"><p>Browsing the profiles is completely free. You only pay a small connection fee ($10 Normal or $50 VIP) when you decide to request an introduction with a specific man.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">3. How long does it take to get connected?</button>
+                    <div class="faq-answer"><p>Connection is done within 10 minutes or 30 minutes, depending on your seriousness and activeness. We fast-track serious clients.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">4. Is my personal information kept private?</button>
+                    <div class="faq-answer"><p>Absolutely. We do not post any of your information on public media platforms (e.g., TikTok, WhatsApp, Facebook, etc.). We value your privacy and respect.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">5. What happens if I am not satisfied with the match?</button>
+                    <div class="faq-answer"><p>If you are not satisfied, we normally have the opportunity to find another match for you, or we can give a refund. Your satisfaction is our priority.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">6. How do I make the payment?</button>
+                    <div class="faq-answer"><p>Once you fill out the connection form and select your package, you will send your details directly to our management team via WhatsApp, Telegram, or Email. We will reply immediately with secure payment options (Bank Transfer, PayPal, etc.).</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">7. What if the man I like is not interested in me?</button>
+                    <div class="faq-answer"><p>Our management team carefully reviews all profiles before making an introduction. However, if the man does not feel you are a match, we will offer you the opportunity to choose another man from our platform at no extra cost.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">8. Do you allow casual dating or hookups?</button>
+                    <div class="faq-answer"><p>No. This is a premium matchmaking platform strictly for serious individuals looking for a committed relationship leading to marriage. We do not entertain casual dating or time-wasters.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">9. Are the men on this platform verified?</button>
+                    <div class="faq-answer"><p>Yes. Every profile you see has been manually reviewed and vetted by our management team. We check for genuine intentions and real photos before allowing a profile to go live.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">10. How will I know when my match is arranged?</button>
+                    <div class="faq-answer"><p>Once you make the payment, our management team will contact you directly via WhatsApp or Email with the next steps. The connection is usually arranged within 10 to 30 minutes.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">11. What if I want to remain anonymous?</button>
+                    <div class="faq-answer"><p>We respect your privacy 100%. We never post your details on social media. Your information is only shared with the specific man you choose to connect with.</p></div>
+                </div>
+            </div>
+            <button id="closeFaqBtn" class="btn-primary" style="margin-top: 20px;">Close FAQs</button>
         </div>
     </div>
 
@@ -311,8 +368,8 @@
                     <div class="step-item">
                         <div class="step-number">3</div>
                         <div class="step-text">
-                            <h3>Direct Contact with the Director</h3>
-                            <p>Choose to send your details directly to the Director via WhatsApp, Telegram, or Email. Our team will review your profile and arrange a secure, private introduction with the gentleman.</p>
+                            <h3>Direct Contact with Management</h3>
+                            <p>Choose to send your details directly to our management team via WhatsApp, Telegram, or Email. We will review your profile and arrange a secure, private introduction with the gentleman.</p>
                         </div>
                     </div>
                 </div>
@@ -325,14 +382,14 @@
     <!-- FLOATING CONTACT BUTTON & POPUP -->
     <div class="floating-contact-wrapper">
         <div id="contactPopup" class="contact-popup hidden">
-            <p>Contact the Director</p>
+            <p>Contact Management</p>
             <a href="#" id="floatWhatsapp" class="contact-option">🟢 WhatsApp</a>
             <a href="#" id="floatTelegram" class="contact-option">🔵 Telegram</a>
             <a href="#" id="floatEmail" class="contact-option">✉️ Email</a>
         </div>
         <button id="floatingContactBtn" class="floating-contact-btn">
             <span class="whatsapp-icon">💬</span>
-            <span class="contact-btn-text">Chat with Director</span>
+            <span class="contact-btn-text">Chat with Management</span>
         </button>
     </div>
 
