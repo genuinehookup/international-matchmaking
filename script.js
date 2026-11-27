@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('matchForm');
     const termsModal = document.getElementById('termsModal');
     const agreeCheckbox = document.getElementById('agreeCheckbox');
     const proceedBtn = document.getElementById('proceedBtn');
@@ -19,12 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqBtn = document.getElementById('faqBtn');
     const faqModal = document.getElementById('faqModal');
     const closeFaqBtn = document.getElementById('closeFaqBtn');
-
-    // TESTIMONIALS & RESULTS ELEMENTS
-    const testimonialsSection = document.getElementById('testimonialsSection');
-    const showMatchesBtn = document.getElementById('showMatchesBtn');
-    const resultsContainer = document.getElementById('resultsContainer');
-    const testimonialTrack = document.getElementById('testimonialTrack');
 
     // CONNECT & PAYMENT MODAL ELEMENTS
     const connectModal = document.getElementById('connectModal');
@@ -56,17 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const DIRECTOR_EMAIL = "genuinehookupconnection@gmail.com";
 
     let currentProfileName = "";
-    let currentUserName = "";
     let allProfilesData = [];
-
+    
     // --- START BUTTON LOGIC ---
     if (startBtn) {
-        startBtn.addEventListener('click', () => {
+        startBtn.addEventListener('click', async () => {
+            // 1. Hide landing page and static title
             landingHero.classList.add('hidden');
             if (titleTicker) titleTicker.classList.add('hidden');
+            
+            // 2. Show main content
             mainContent.classList.remove('hidden');
+            
+            // 3. Show the Location link in the header
             if (locationBtn) locationBtn.classList.remove('hidden');
+            
+            // 4. Scroll to top
             window.scrollTo(0, 0); 
+
+            // 5. Load the profiles immediately
+            try {
+                const response = await fetch('profiles.json');
+                if (!response.ok) throw new Error("Could not load profiles.json.");
+                allProfilesData = await response.json();
+                displayMatches(allProfilesData);
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Error loading profiles: " + error.message);
+            }
         });
     }
 
@@ -102,11 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
         question.addEventListener('click', function() {
-            // Toggle active class on the parent faq-item
             const parent = this.parentElement;
             parent.classList.toggle('active');
             
-            // Close other open FAQs (Optional - remove this block if you want multiple open at once)
             faqQuestions.forEach(q => {
                 if (q !== this && q.parentElement.classList.contains('active')) {
                     q.parentElement.classList.remove('active');
@@ -148,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     async function loadTestimonials() {
+        const testimonialTrack = document.getElementById('testimonialTrack');
         if (!testimonialTrack) return;
 
         try {
@@ -180,9 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Could not load testimonials", error);
-            testimonialTrack.innerHTML = "<p>Loading testimonials...</p>";
         }
     }
+
+    // Load testimonials immediately on page load (since they are on landing page)
+    loadTestimonials();
 
     // --- LIVE TICKER DATA ---
     const firstNames = ["David", "James", "Michael", "John", "Robert", "William", "Richard", "Joseph", "Thomas", "Charles", "Sarah", "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte", "Amelia", "Harper", "Evelyn"];
@@ -249,52 +260,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- CHECKBOX LOGIC ---
+    // --- CHECKBOX LOGIC (Terms) ---
     agreeCheckbox.addEventListener('change', function() {
         proceedBtn.disabled = !this.checked;
     });
 
-    // --- MAIN FORM SUBMISSION ---
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault();
-        currentUserName = document.getElementById('userName').value;
-
-        try {
-            const response = await fetch('profiles.json');
-            if (!response.ok) throw new Error("Could not load profiles.json.");
-            allProfilesData = await response.json();
-
-            termsModal.classList.remove('hidden');
-
-            proceedBtn.onclick = function() {
-                termsModal.classList.add('hidden');
-                
-                document.getElementById('heroText').style.display = 'none';
-                document.getElementById('formContainer').style.display = 'none';
-                
-                testimonialsSection.classList.remove('hidden');
-                loadTestimonials();
-            };
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Error: " + error.message);
-        }
-    });
-
-    // --- SHOW MATCHES BUTTON ---
-    showMatchesBtn.addEventListener('click', function() {
-        testimonialsSection.classList.add('hidden');
-        displayMatches(currentUserName, allProfilesData);
-    });
-
-    function displayMatches(userName, matches) {
-        resultsContainer.classList.remove('hidden');
-        document.getElementById('resultsGreeting').innerHTML = `Hi ${userName}, here are your matches!`;
-
-        createTickerSlides();
-
+    // --- DISPLAY MATCHES (The Men) ---
+    function displayMatches(matches) {
         const grid = document.getElementById('profileGrid');
         grid.innerHTML = ''; 
+
+        createTickerSlides();
 
         matches.forEach(profile => {
             const card = document.createElement('div');
@@ -359,16 +335,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- CONNECT & PAYMENT LOGIC ---
+    // --- CONNECT LOGIC (Terms First, then Form) ---
     window.openConnectForm = function(profileName) {
         currentProfileName = profileName;
-        connectModalTitle.innerHTML = `Request Connection with ${profileName}`;
         
-        connectFormStep.classList.remove('hidden');
-        paymentStep.classList.add('hidden');
-        connectSendStep.classList.add('hidden');
+        // 1. Show the Terms Modal first
+        termsModal.classList.remove('hidden');
         
-        connectModal.classList.remove('hidden');
+        // 2. Setup the Proceed button to show the Form when clicked
+        proceedBtn.onclick = function() {
+            termsModal.classList.add('hidden'); // Hide Terms
+            
+            // Setup the form modal
+            connectModalTitle.innerHTML = `Request Connection with ${currentProfileName}`;
+            connectFormStep.classList.remove('hidden');
+            paymentStep.classList.add('hidden');
+            connectSendStep.classList.add('hidden');
+            
+            // Show the form modal
+            connectModal.classList.remove('hidden');
+        };
     };
 
     c_about.addEventListener('input', function() {
