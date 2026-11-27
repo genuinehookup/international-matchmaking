@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationModal = document.getElementById('locationModal');
     const closeLocationBtn = document.getElementById('closeLocationBtn');
     
+    // FAQ ELEMENTS
+    const faqBtn = document.getElementById('faqBtn');
+    const faqModal = document.getElementById('faqModal');
+    const closeFaqBtn = document.getElementById('closeFaqBtn');
+
     // TESTIMONIALS & RESULTS ELEMENTS
     const testimonialsSection = document.getElementById('testimonialsSection');
     const showMatchesBtn = document.getElementById('showMatchesBtn');
@@ -57,19 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- START BUTTON LOGIC ---
     if (startBtn) {
         startBtn.addEventListener('click', () => {
-            // 1. Hide landing page
             landingHero.classList.add('hidden');
-            
-            // 2. Hide the sliding ticker forever
             if (titleTicker) titleTicker.classList.add('hidden');
-            
-            // 3. Show main content
             mainContent.classList.remove('hidden');
-            
-            // 4. Show the Location link in the header
             if (locationBtn) locationBtn.classList.remove('hidden');
-            
-            // 5. Scroll to top
             window.scrollTo(0, 0); 
         });
     }
@@ -87,6 +83,37 @@ document.addEventListener('DOMContentLoaded', () => {
             locationModal.classList.add('hidden');
         });
     }
+
+    // --- FAQ MODAL LOGIC ---
+    if (faqBtn) {
+        faqBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            faqModal.classList.remove('hidden');
+        });
+    }
+
+    if (closeFaqBtn) {
+        closeFaqBtn.addEventListener('click', () => {
+            faqModal.classList.add('hidden');
+        });
+    }
+
+    // FAQ Accordion Logic
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            // Toggle active class on the parent faq-item
+            const parent = this.parentElement;
+            parent.classList.toggle('active');
+            
+            // Close other open FAQs (Optional - remove this block if you want multiple open at once)
+            faqQuestions.forEach(q => {
+                if (q !== this && q.parentElement.classList.contains('active')) {
+                    q.parentElement.classList.remove('active');
+                }
+            });
+        });
+    });
 
     // --- TESTIMONIALS DATA ---
     const names = ["Sarah", "David", "Amina", "James", "Grace", "Mark", "Elena", "John", "Fatima", "Peter", "Chloe", "Michael", "Zainab", "Robert", "Blessing", "Thomas", "Maria", "Kevin", "Joyce", "Brian", "Ruth", "Daniel", "Esther", "Paul", "Linda", "Samuel", "Fatou", "Victor", "Mercy", "George", "Aisha", "Simon", "Patience", "Emmanuel", "Joy", "Stephen", "Hannah", "Dennis", "Cynthia", "Francis", "Beatrice", "Charles", "Martha", "Isaac", "Lydia", "Patrick", "Rebecca", "Joseph", "Deborah", "Isaac", "Andrew", "Martha", "Philip", "Keziah", "Henry", "Naomi", "Martin", "Priscilla", "Timothy"];
@@ -205,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- FLOATING CONTACT BUTTON LOGIC ---
-    const contactMessage = encodeURIComponent("Hello Director, I am on the International-Matchmaking website and I have a question.");
+    const contactMessage = encodeURIComponent("Hello Management, I am on the International-Matchmaking website and I have a question.");
     
     floatWhatsapp.href = `https://wa.me/${DIRECTOR_WHATSAPP}?text=${contactMessage}`;
     floatTelegram.href = `https://t.me/${DIRECTOR_TELEGRAM}`; 
@@ -378,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const about = c_about.value;
 
         const message = 
-`Hello Director,
+`Hello Management,
 
 I am interested in connecting with *${currentProfileName}*.
 
