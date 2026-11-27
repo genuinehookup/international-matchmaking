@@ -780,15 +780,17 @@ main {
     background: rgba(37, 99, 235, 0.1);
 }
 
+/* THE NEW ARROW ICON */
 .faq-question::after {
-    content: '+';
-    font-size: 1.2rem;
-    color: var(--primary-blue);
-    transition: transform 0.3s;
+    content: '▼';
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
 }
 
 .faq-item.active .faq-question::after {
-    transform: rotate(45deg);
+    transform: rotate(180deg);
+    color: var(--primary-blue);
 }
 
 .faq-answer {
@@ -807,7 +809,7 @@ main {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 300px; /* Adjust if answer is very long */
+    max-height: 300px; 
 }
 
 /* --- MODALS --- */
